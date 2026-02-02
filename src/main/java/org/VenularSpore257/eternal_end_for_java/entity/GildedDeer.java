@@ -1,6 +1,8 @@
 package org.VenularSpore257.eternal_end_for_java.entity;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -11,6 +13,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.VenularSpore257.eternal_end_for_java.client.ModSounds;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
@@ -60,6 +65,29 @@ public class GildedDeer extends Animal implements GeoAnimatable {
         return null; // TODO: Return baby deer
     }
 
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return ModSounds.GILDED_DEER_AMBIENT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
+        return ModSounds.GILDED_DEER_HURT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.GILDED_DEER_DEATH.get();
+    }
+
+    @Nullable
+    protected SoundEvent getStepSound() {
+        return ModSounds.GILDED_DEER_AMBIENT.get();
+    }
+
     // ========== GeoAnimatable Implementation ==========
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -77,11 +105,18 @@ public class GildedDeer extends Animal implements GeoAnimatable {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "animation_controller", 0, event -> {
+            // Priority order: attack > moving > idle
+            if (this.isAggressive() || (this.getTarget() != null && this.hasLineOfSight(this.getTarget()))) {
+                event.setAnimation(RawAnimation.begin().thenLoop("attack"));
+                return PlayState.CONTINUE;
+            }
+
             if (event.isMoving()) {
                 event.setAnimation(RawAnimation.begin().thenLoop("walk"));
-            } else {
-                event.setAnimation(RawAnimation.begin().thenLoop("idle"));
+                return PlayState.CONTINUE;
             }
+
+            event.setAnimation(RawAnimation.begin().thenLoop("idle"));
             return PlayState.CONTINUE;
         }));
     }

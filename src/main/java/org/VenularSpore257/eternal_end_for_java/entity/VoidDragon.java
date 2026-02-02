@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -23,6 +24,8 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.VenularSpore257.eternal_end_for_java.client.ModSounds;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
@@ -71,17 +74,45 @@ public class VoidDragon extends FlyingMob implements GeoEntity {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "movement", 0, event -> {
             int phase = getPhase();
-            if (phase == PHASE_STATUE || phase == PHASE_DEATH) {
-                event.setAnimation(RawAnimation.begin().thenLoop("idle"));
-            } else if (phase == PHASE_CIRCLE || phase == PHASE_CATCH) {
-                event.setAnimation(RawAnimation.begin().thenLoop("fly"));
-            } else if (phase == PHASE_SHOOT) {
-                event.setAnimation(RawAnimation.begin().thenLoop("attack"));
-            } else if (phase == PHASE_SPAWN) {
-                event.setAnimation(RawAnimation.begin().thenLoop("spawn"));
-            } else {
-                event.setAnimation(RawAnimation.begin().thenLoop("idle"));
+
+            // Statue phase - the dragon appears as a dormant statue
+            if (phase == PHASE_STATUE) {
+                event.setAnimation(RawAnimation.begin().thenLoop("statue"));
+                return PlayState.CONTINUE;
             }
+
+            // Death phase - plays death animation once
+            if (phase == PHASE_DEATH || phase == PHASE_PRE_DEATH) {
+                event.setAnimation(RawAnimation.begin().thenPlay("death"));
+                return PlayState.CONTINUE;
+            }
+
+            // Regeneration phase (could be added as a new phase)
+            if (this.isDelayedDeath()) {
+                event.setAnimation(RawAnimation.begin().thenLoop("regeneration"));
+                return PlayState.CONTINUE;
+            }
+
+            // Spawn phase - initial spawn animation
+            if (phase == PHASE_SPAWN) {
+                event.setAnimation(RawAnimation.begin().thenLoop("spawn"));
+                return PlayState.CONTINUE;
+            }
+
+            // Circle/Catch phases - flying animations
+            if (phase == PHASE_CIRCLE || phase == PHASE_CATCH) {
+                event.setAnimation(RawAnimation.begin().thenLoop("fly"));
+                return PlayState.CONTINUE;
+            }
+
+            // Shoot phase - attack animation
+            if (phase == PHASE_SHOOT) {
+                event.setAnimation(RawAnimation.begin().thenLoop("attack"));
+                return PlayState.CONTINUE;
+            }
+
+            // Default idle animation
+            event.setAnimation(RawAnimation.begin().thenLoop("idle"));
             return PlayState.CONTINUE;
         }));
     }
@@ -199,8 +230,34 @@ public class VoidDragon extends FlyingMob implements GeoEntity {
         }
     }
 
-    protected boolean isFireImmune() {
+    public boolean isFireImmune() {
         return true;
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return ModSounds.VOID_DRAGON_FLAP.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
+        return ModSounds.VOID_DRAGON_HURT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.VOID_DRAGON_DEATH.get();
+    }
+
+    protected SoundEvent getAttackSound() {
+        return ModSounds.VOID_DRAGON_ATTACK.get();
+    }
+
+    protected SoundEvent getFlapSound() {
+        return ModSounds.VOID_DRAGON_FLAP.get();
     }
 
     @Override

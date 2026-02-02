@@ -38,6 +38,9 @@ public class ModDataGenerators {
         // Register recipe provider
         event.getGenerator().addProvider(event.includeServer(), new ModRecipeProvider(output, lookupProvider));
 
+        // Register loot table provider
+        event.getGenerator().addProvider(event.includeServer(), new ModLootTableProvider(output, lookupProvider));
+
         System.out.println("Eternal End data generators registered successfully");
     }
 }

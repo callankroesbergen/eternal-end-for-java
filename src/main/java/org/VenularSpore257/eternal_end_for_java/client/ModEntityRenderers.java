@@ -41,6 +41,12 @@ import org.VenularSpore257.eternal_end_for_java.client.renderer.entity.GildedGol
 import org.VenularSpore257.eternal_end_for_java.client.renderer.entity.GenericMobRenderer;
 import org.VenularSpore257.eternal_end_for_java.client.renderer.entity.GenericProjectileRenderer;
 import org.VenularSpore257.eternal_end_for_java.client.renderer.entity.SprengingGeoRenderer;
+import org.VenularSpore257.eternal_end_for_java.client.renderer.entity.EternalTraderRenderer;
+import org.VenularSpore257.eternal_end_for_java.client.renderer.entity.NormalVillagerRenderer;
+import org.VenularSpore257.eternal_end_for_java.client.renderer.entity.PrismVillagerRenderer;
+import org.VenularSpore257.eternal_end_for_java.client.renderer.entity.SporeVillagerRenderer;
+import org.VenularSpore257.eternal_end_for_java.client.renderer.entity.GildedVillagerRenderer;
+import org.VenularSpore257.eternal_end_for_java.client.renderer.entity.ShadowVillagerRenderer;
 import org.VenularSpore257.eternal_end_for_java.client.renderer.entity.SveppumGeoRenderer;
 import org.VenularSpore257.eternal_end_for_java.client.renderer.entity.VoidDragonGeoRenderer;
 
@@ -106,13 +112,13 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(EternalEndEntities.SPORE_LIZARD.get(), SporeLizardGeoRenderer::new);
         event.registerEntityRenderer(EternalEndEntities.VERDANT_LIZARD.get(), VerdantLizardGeoRenderer::new);
 
-        // Villagers
-        event.registerEntityRenderer(EternalEndEntities.ETERNAL_TRADER.get(), ctx -> new GenericMobRenderer<>(ctx, "eternal_trader.png"));
-        event.registerEntityRenderer(EternalEndEntities.NORMAL_VILLAGER.get(), ctx -> new GenericMobRenderer<>(ctx, "normal_villager.png"));
-        event.registerEntityRenderer(EternalEndEntities.PRISM_VILLAGER.get(), ctx -> new GenericMobRenderer<>(ctx, "prism_villager.png"));
-        event.registerEntityRenderer(EternalEndEntities.SPORE_VILLAGER.get(), ctx -> new GenericMobRenderer<>(ctx, "spore_villager.png"));
-        event.registerEntityRenderer(EternalEndEntities.GILDED_VILLAGER.get(), ctx -> new GenericMobRenderer<>(ctx, "gilded_villager.png"));
-        event.registerEntityRenderer(EternalEndEntities.SHADOW_VILLAGER.get(), ctx -> new GenericMobRenderer<>(ctx, "shadow_villager.png"));
+        // Villagers - Use custom renderers with profession-specific textures
+        event.registerEntityRenderer(EternalEndEntities.ETERNAL_TRADER.get(), EternalTraderRenderer::new);
+        event.registerEntityRenderer(EternalEndEntities.NORMAL_VILLAGER.get(), NormalVillagerRenderer::new);
+        event.registerEntityRenderer(EternalEndEntities.PRISM_VILLAGER.get(), PrismVillagerRenderer::new);
+        event.registerEntityRenderer(EternalEndEntities.SPORE_VILLAGER.get(), SporeVillagerRenderer::new);
+        event.registerEntityRenderer(EternalEndEntities.GILDED_VILLAGER.get(), GildedVillagerRenderer::new);
+        event.registerEntityRenderer(EternalEndEntities.SHADOW_VILLAGER.get(), ShadowVillagerRenderer::new);
 
         // Golems
         event.registerEntityRenderer(EternalEndEntities.GILDED_GOLEM.get(), GildedGolemGeoRenderer::new);

@@ -296,6 +296,12 @@ public class EternalEndItems {
     public static final DeferredItem<Item> ENDER_SLIME_SPAWN_EGG = registerSpawnEgg("ender_slime_spawn_egg", EternalEndEntities.ENDER_SLIME, 0xAA00AA, 0x440088);
     public static final DeferredItem<Item> FROZEN_JELLYFISH_SPAWN_EGG = registerSpawnEgg("frozen_jellyfish_spawn_egg", EternalEndEntities.FROZEN_JELLYFISH, 0xAAAAFF, 0x8888FF);
 
+    // Enderman Variant Spawn Eggs
+    public static final DeferredItem<Item> PALE_ENDERMAN_SPAWN_EGG = registerSpawnEgg("pale_enderman_spawn_egg", EternalEndEntities.PALE_ENDERMAN, 0xCCCCCC, 0xAAAAAA);
+    public static final DeferredItem<Item> MOSSY_ENDERMAN_SPAWN_EGG = registerSpawnEgg("mossy_enderman_spawn_egg", EternalEndEntities.MOSSY_ENDERMAN, 0x55AA55, 0x338833);
+    public static final DeferredItem<Item> GILDED_ENDERMAN_SPAWN_EGG = registerSpawnEgg("gilded_enderman_spawn_egg", EternalEndEntities.GILDED_ENDERMAN, 0xFFDD44, 0xAA8822);
+    public static final DeferredItem<Item> MYCOTIC_ENDERMAN_SPAWN_EGG = registerSpawnEgg("mycotic_enderman_spawn_egg", EternalEndEntities.MYCOTIC_ENDERMAN, 0xAA55AA, 0x883388);
+
     // Villager Spawn Eggs
     public static final DeferredItem<Item> ETERNAL_TRADER_SPAWN_EGG = registerSpawnEgg("eternal_trader_spawn_egg", EternalEndEntities.ETERNAL_TRADER, 0x888888, 0xCCCCCC);
     public static final DeferredItem<Item> NORMAL_VILLAGER_SPAWN_EGG = registerSpawnEgg("normal_villager_spawn_egg", EternalEndEntities.NORMAL_VILLAGER, 0x888888, 0xCCCCCC);

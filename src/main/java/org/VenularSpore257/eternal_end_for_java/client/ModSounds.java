@@ -152,6 +152,50 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> COMPANION_HURT = register("entity.companion.hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> COMPANION_DEATH = register("entity.companion.death");
 
+    // ========== Frostling Sounds ==========
+    public static final DeferredHolder<SoundEvent, SoundEvent> FROSTLING_AMBIENT = register("entity.frostling.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FROSTLING_HURT = register("entity.frostling.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FROSTLING_DEATH = register("entity.frostling.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FROSTLING_STEP = register("entity.frostling.step");
+
+    // ========== Glowling Sounds ==========
+    public static final DeferredHolder<SoundEvent, SoundEvent> GLOWLING_AMBIENT = register("entity.glowling.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GLOWLING_HURT = register("entity.glowling.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GLOWLING_DEATH = register("entity.glowling.death");
+
+    // ========== Nybling Sounds ==========
+    public static final DeferredHolder<SoundEvent, SoundEvent> NYBLING_AMBIENT = register("entity.nybling.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NYBLING_HURT = register("entity.nybling.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NYBLING_DEATH = register("entity.nybling.death");
+
+    // ========== Mistling Sounds ==========
+    public static final DeferredHolder<SoundEvent, SoundEvent> MISTLING_AMBIENT = register("entity.mistling.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MISTLING_HURT = register("entity.mistling.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MISTLING_DEATH = register("entity.mistling.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MISTLING_ATTACK = register("entity.mistling.attack");
+
+    // ========== Voidling Sounds ==========
+    public static final DeferredHolder<SoundEvent, SoundEvent> VOIDLING_AMBIENT = register("entity.voidling.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VOIDLING_HURT = register("entity.voidling.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VOIDLING_DEATH = register("entity.voidling.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VOIDLING_ATTACK = register("entity.voidling.attack");
+
+    // ========== Ender Slime Sounds ==========
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENDER_SLIME_AMBIENT = register("entity.ender_slime.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENDER_SLIME_HURT = register("entity.ender_slime.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENDER_SLIME_DEATH = register("entity.ender_slime.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENDER_SLIME_SQUISH = register("entity.ender_slime.squish");
+
+    // ========== Verdant Lizard Sounds ==========
+    public static final DeferredHolder<SoundEvent, SoundEvent> VERDANT_LIZARD_AMBIENT = register("entity.verdant_lizard.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VERDANT_LIZARD_HURT = register("entity.verdant_lizard.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VERDANT_LIZARD_DEATH = register("entity.verdant_lizard.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VERDANT_LIZARD_ATTACK = register("entity.verdant_lizard.attack");
+
+    // ========== Sveppum Sounds ==========
+    public static final DeferredHolder<SoundEvent, SoundEvent> SVEPPUM_AMBIENT = register("entity.sveppum.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SVEPPUM_DEATH = register("entity.sveppum.death");
+
     /**
      * Helper method to register a sound event.
      * @param name The sound event name (without namespace)

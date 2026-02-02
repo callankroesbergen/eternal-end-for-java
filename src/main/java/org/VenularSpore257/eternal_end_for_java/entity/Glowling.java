@@ -7,6 +7,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import org.VenularSpore257.eternal_end_for_java.client.ModSounds;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -38,8 +39,14 @@ import software.bernie.geckolib.util.GeckoLibUtil;
  */
 public class Glowling extends Animal implements GeoAnimatable {
     private static final EntityDataAccessor<Boolean> DATA_GLOWING_ID = SynchedEntityData.defineId(Glowling.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_BEGGING_ID = SynchedEntityData.defineId(Glowling.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_SLEEPING_ID = SynchedEntityData.defineId(Glowling.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_HAPPY_ID = SynchedEntityData.defineId(Glowling.class, EntityDataSerializers.BOOLEAN);
 
     private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(Items.GOLDEN_CARROT, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE);
+
+    private int happyTimer = 0;
+    private Player beggingTarget = null;
 
     public Glowling(EntityType<? extends Glowling> type, Level level) {
         super(type, level);
@@ -68,6 +75,9 @@ public class Glowling extends Animal implements GeoAnimatable {
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(DATA_GLOWING_ID, true);
+        builder.define(DATA_BEGGING_ID, false);
+        builder.define(DATA_SLEEPING_ID, false);
+        builder.define(DATA_HAPPY_ID, false);
     }
 
     public boolean isGlowing() {
@@ -78,9 +88,67 @@ public class Glowling extends Animal implements GeoAnimatable {
         this.entityData.set(DATA_GLOWING_ID, glowing);
     }
 
+    public boolean isBegging() {
+        return this.entityData.get(DATA_BEGGING_ID);
+    }
+
+    public void setBegging(boolean begging) {
+        this.entityData.set(DATA_BEGGING_ID, begging);
+    }
+
+    public boolean isSleeping() {
+        return this.entityData.get(DATA_SLEEPING_ID);
+    }
+
+    public void setSleeping(boolean sleeping) {
+        this.entityData.set(DATA_SLEEPING_ID, sleeping);
+    }
+
+    public boolean isHappy() {
+        return this.entityData.get(DATA_HAPPY_ID);
+    }
+
+    public void setHappy(boolean happy) {
+        this.entityData.set(DATA_HAPPY_ID, happy);
+        if (happy) {
+            this.happyTimer = 50; // Happy state lasts ~2.5 seconds
+        }
+    }
+
     @Override
     public double getTick(Object instance) {
         return this.tickCount;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        // Handle happy timer
+        if (this.isHappy() && this.happyTimer > 0) {
+            this.happyTimer--;
+            if (this.happyTimer <= 0) {
+                this.setHappy(false);
+            }
+        }
+
+        // Check for nearby players with food to trigger begging
+        if (!this.level().isClientSide && !this.isSleeping()) {
+            boolean shouldBeg = false;
+            for (Player player : this.level().getEntitiesOfClass(Player.class, this.getBoundingBox().inflate(8.0))) {
+                ItemStack mainHandItem = player.getMainHandItem();
+                ItemStack offHandItem = player.getOffhandItem();
+                if (isFood(mainHandItem) || isFood(offHandItem)) {
+                    shouldBeg = true;
+                    beggingTarget = player;
+                    break;
+                }
+            }
+            this.setBegging(shouldBeg);
+            if (!shouldBeg) {
+                beggingTarget = null;
+            }
+        }
     }
 
     @Override
@@ -92,10 +160,27 @@ public class Glowling extends Animal implements GeoAnimatable {
     public @NotNull InteractionResult mobInteract(Player player, @NotNull InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         if (!this.level().isClientSide && this.isAlive()) {
+            // Right-click with bed item to toggle sleeping
+            if (itemstack.is(Items.WHITE_BED) || itemstack.is(Items.BLACK_BED) ||
+                itemstack.is(Items.BLUE_BED) || itemstack.is(Items.BROWN_BED) ||
+                itemstack.is(Items.CYAN_BED) || itemstack.is(Items.GRAY_BED) ||
+                itemstack.is(Items.GREEN_BED) || itemstack.is(Items.LIGHT_BLUE_BED) ||
+                itemstack.is(Items.LIGHT_GRAY_BED) || itemstack.is(Items.LIME_BED) ||
+                itemstack.is(Items.MAGENTA_BED) || itemstack.is(Items.ORANGE_BED) ||
+                itemstack.is(Items.PINK_BED) || itemstack.is(Items.PURPLE_BED) ||
+                itemstack.is(Items.RED_BED) || itemstack.is(Items.YELLOW_BED)) {
+                this.setSleeping(!this.isSleeping());
+                return InteractionResult.SUCCESS;
+            }
+
             if (this.isFood(itemstack)) {
+                // Wake up if sleeping
+                this.setSleeping(false);
+
                 if (!player.getAbilities().instabuild) {
                     itemstack.shrink(1);
                 }
+                this.setHappy(true);
                 this.heal(4.0f);
                 this.spawnHeartParticles();
 
@@ -128,30 +213,36 @@ public class Glowling extends Animal implements GeoAnimatable {
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putBoolean("Glowing", this.isGlowing());
+        compound.putBoolean("Begging", this.isBegging());
+        compound.putBoolean("Sleeping", this.isSleeping());
+        compound.putBoolean("Happy", this.isHappy());
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.setGlowing(compound.getBoolean("Glowing"));
+        this.setBegging(compound.getBoolean("Begging"));
+        this.setSleeping(compound.getBoolean("Sleeping"));
+        this.setHappy(compound.getBoolean("Happy"));
     }
 
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.AMETHYST_BLOCK_CHIME;
+        return ModSounds.GLOWLING_AMBIENT.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
-        return SoundEvents.AMETHYST_BLOCK_HIT;
+        return ModSounds.GLOWLING_HURT.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.AMETHYST_CLUSTER_BREAK;
+        return ModSounds.GLOWLING_DEATH.get();
     }
 
     @Override
@@ -171,11 +262,29 @@ public class Glowling extends Animal implements GeoAnimatable {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "animation_controller", 0, event -> {
+            // Priority order: sleeping > begging > happy > moving > idle
+
+            if (isSleeping()) {
+                event.setAnimation(RawAnimation.begin().thenLoop("sleeping"));
+                return PlayState.CONTINUE;
+            }
+
+            if (isBegging()) {
+                event.setAnimation(RawAnimation.begin().thenLoop("begging"));
+                return PlayState.CONTINUE;
+            }
+
+            if (isHappy()) {
+                event.setAnimation(RawAnimation.begin().thenPlay("happy_dance"));
+                return PlayState.CONTINUE;
+            }
+
             if (event.isMoving()) {
                 event.setAnimation(RawAnimation.begin().thenLoop("walk"));
-            } else {
-                event.setAnimation(RawAnimation.begin().thenLoop("idle"));
+                return PlayState.CONTINUE;
             }
+
+            event.setAnimation(RawAnimation.begin().thenLoop("idle"));
             return PlayState.CONTINUE;
         }));
     }

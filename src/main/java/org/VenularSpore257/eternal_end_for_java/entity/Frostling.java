@@ -8,6 +8,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import org.VenularSpore257.eternal_end_for_java.client.ModSounds;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -41,10 +42,13 @@ public class Frostling extends Animal implements GeoAnimatable {
     private static final EntityDataAccessor<Boolean> DATA_HAPPY_ID = SynchedEntityData.defineId(Frostling.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> DATA_FROZEN_ID = SynchedEntityData.defineId(Frostling.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> DATA_SITTING_ID = SynchedEntityData.defineId(Frostling.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_BEGGING_ID = SynchedEntityData.defineId(Frostling.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_SLEEPING_ID = SynchedEntityData.defineId(Frostling.class, EntityDataSerializers.BOOLEAN);
 
     private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(Items.CHORUS_FRUIT, Items.CHORUS_FLOWER);
 
     private int happyTimer = 0;
+    private Player beggingTarget = null;
 
     public Frostling(EntityType<? extends Frostling> type, Level level) {
         super(type, level);
@@ -75,10 +79,28 @@ public class Frostling extends Animal implements GeoAnimatable {
         builder.define(DATA_HAPPY_ID, false);
         builder.define(DATA_FROZEN_ID, false);
         builder.define(DATA_SITTING_ID, false);
+        builder.define(DATA_BEGGING_ID, false);
+        builder.define(DATA_SLEEPING_ID, false);
     }
 
     public boolean isHappy() {
         return this.entityData.get(DATA_HAPPY_ID);
+    }
+
+    public boolean isBegging() {
+        return this.entityData.get(DATA_BEGGING_ID);
+    }
+
+    public void setBegging(boolean begging) {
+        this.entityData.set(DATA_BEGGING_ID, begging);
+    }
+
+    public boolean isSleeping() {
+        return this.entityData.get(DATA_SLEEPING_ID);
+    }
+
+    public void setSleeping(boolean sleeping) {
+        this.entityData.set(DATA_SLEEPING_ID, sleeping);
     }
 
     public void setHappy(boolean happy) {
@@ -127,6 +149,24 @@ public class Frostling extends Animal implements GeoAnimatable {
                 this.setHappy(false);
             }
         }
+
+        // Check for nearby players with food to trigger begging
+        if (!this.level().isClientSide && !this.isSleeping() && !this.isFrozen()) {
+            boolean shouldBeg = false;
+            for (Player player : this.level().getEntitiesOfClass(Player.class, this.getBoundingBox().inflate(8.0))) {
+                ItemStack mainHandItem = player.getMainHandItem();
+                ItemStack offHandItem = player.getOffhandItem();
+                if (isFood(mainHandItem) || isFood(offHandItem)) {
+                    shouldBeg = true;
+                    beggingTarget = player;
+                    break;
+                }
+            }
+            this.setBegging(shouldBeg);
+            if (!shouldBeg) {
+                beggingTarget = null;
+            }
+        }
     }
 
     @Override
@@ -150,14 +190,31 @@ public class Frostling extends Animal implements GeoAnimatable {
                 return InteractionResult.PASS;
             }
 
+            // Right-click with bed item to toggle sleeping
+            if (itemstack.is(Items.WHITE_BED) || itemstack.is(Items.BLACK_BED) ||
+                itemstack.is(Items.BLUE_BED) || itemstack.is(Items.BROWN_BED) ||
+                itemstack.is(Items.CYAN_BED) || itemstack.is(Items.GRAY_BED) ||
+                itemstack.is(Items.GREEN_BED) || itemstack.is(Items.LIGHT_BLUE_BED) ||
+                itemstack.is(Items.LIGHT_GRAY_BED) || itemstack.is(Items.LIME_BED) ||
+                itemstack.is(Items.MAGENTA_BED) || itemstack.is(Items.ORANGE_BED) ||
+                itemstack.is(Items.PINK_BED) || itemstack.is(Items.PURPLE_BED) ||
+                itemstack.is(Items.RED_BED) || itemstack.is(Items.YELLOW_BED)) {
+                this.setSleeping(!this.isSleeping());
+                return InteractionResult.SUCCESS;
+            }
+
             // Right-click with empty hand to toggle sitting
             if (itemstack.isEmpty()) {
+                this.setSleeping(false); // Wake up if sleeping
                 this.setSitting(!this.isSitting());
                 this.setInLove(player); // Also triggers hearts
                 return InteractionResult.SUCCESS;
             }
 
             if (this.isFood(itemstack)) {
+                // Wake up if sleeping
+                this.setSleeping(false);
+
                 // Feed the frostling
                 if (!player.getAbilities().instabuild) {
                     itemstack.shrink(1);
@@ -198,6 +255,8 @@ public class Frostling extends Animal implements GeoAnimatable {
         compound.putBoolean("Happy", this.isHappy());
         compound.putBoolean("Frozen", this.isFrozen());
         compound.putBoolean("Sitting", this.isSitting());
+        compound.putBoolean("Begging", this.isBegging());
+        compound.putBoolean("Sleeping", this.isSleeping());
     }
 
     @Override
@@ -206,24 +265,31 @@ public class Frostling extends Animal implements GeoAnimatable {
         this.setHappy(compound.getBoolean("Happy"));
         this.setFrozen(compound.getBoolean("Frozen"));
         this.setSitting(compound.getBoolean("Sitting"));
+        this.setBegging(compound.getBoolean("Begging"));
+        this.setSleeping(compound.getBoolean("Sleeping"));
     }
 
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.GLASS_HIT;
+        return ModSounds.FROSTLING_AMBIENT.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
-        return SoundEvents.GLASS_BREAK;
+        return ModSounds.FROSTLING_HURT.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.GLASS_BREAK;
+        return ModSounds.FROSTLING_DEATH.get();
+    }
+
+    @Nullable
+    protected SoundEvent getStepSound() {
+        return ModSounds.FROSTLING_STEP.get();
     }
 
     @Override
@@ -243,19 +309,39 @@ public class Frostling extends Animal implements GeoAnimatable {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "animation_controller", 0, event -> {
-            // Get animation state based on entity conditions
-            if (isFrozen()) {
-                event.setAnimation(RawAnimation.begin().thenPlay("frozen"));
-            } else if (isHappy()) {
-                event.setAnimation(RawAnimation.begin().thenPlay("happy"));
-            } else if (isSitting()) {
-                event.setAnimation(RawAnimation.begin().thenLoop("sit"));
-            } else if (event.isMoving()) {
-                event.setAnimation(RawAnimation.begin().thenLoop("walk"));
-            } else {
-                event.setAnimation(RawAnimation.begin().thenLoop("idle"));
+            // Priority order: sleeping > frozen > begging > happy > sitting > moving > idle
+
+            if (isSleeping()) {
+                event.setAnimation(RawAnimation.begin().thenLoop("sleeping"));
+                return PlayState.CONTINUE;
             }
 
+            if (isFrozen()) {
+                event.setAnimation(RawAnimation.begin().thenPlay("frozen"));
+                return PlayState.CONTINUE;
+            }
+
+            if (isBegging()) {
+                event.setAnimation(RawAnimation.begin().thenLoop("begging"));
+                return PlayState.CONTINUE;
+            }
+
+            if (isHappy()) {
+                event.setAnimation(RawAnimation.begin().thenPlay("happy_dance"));
+                return PlayState.CONTINUE;
+            }
+
+            if (isSitting()) {
+                event.setAnimation(RawAnimation.begin().thenLoop("sit"));
+                return PlayState.CONTINUE;
+            }
+
+            if (event.isMoving()) {
+                event.setAnimation(RawAnimation.begin().thenLoop("walk"));
+                return PlayState.CONTINUE;
+            }
+
+            event.setAnimation(RawAnimation.begin().thenLoop("idle"));
             return PlayState.CONTINUE;
         }));
     }
