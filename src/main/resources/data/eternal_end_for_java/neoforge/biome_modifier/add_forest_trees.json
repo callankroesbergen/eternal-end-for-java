@@ -1,0 +1,16 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "eternal_end_for_java:gilded_woods",
+    "eternal_end_for_java:normal_forest",
+    "eternal_end_for_java:prism_forest",
+    "eternal_end_for_java:shadow_fold",
+    "eternal_end_for_java:sporelight_fungal_forest",
+    "eternal_end_for_java:sporelight_mixed_forest",
+    "eternal_end_for_java:sporelight_spored_forest",
+    "eternal_end_for_java:verdant_glade",
+    "eternal_end_for_java:verdant_grove"
+  ],
+  "features": "eternal_end_for_java:chorus_tree_placed",
+  "step": "vegetal_decoration"
+}

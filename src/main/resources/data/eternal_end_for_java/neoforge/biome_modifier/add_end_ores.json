@@ -1,0 +1,11 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": [
+    "eternal_end_for_java:end_ametrine_ore_placed",
+    "eternal_end_for_java:end_purpurite_ore_placed",
+    "eternal_end_for_java:end_viridian_ore_placed",
+    "eternal_end_for_java:ametrine_geode_placed"
+  ],
+  "step": "underground_ores"
+}

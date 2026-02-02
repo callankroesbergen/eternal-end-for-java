@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": [
+    "eternal_end_for_java:gilded_grass_placed",
+    "eternal_end_for_java:chorus_flower_placed"
+  ],
+  "step": "vegetal_decoration"
+}
