@@ -1,0 +1,244 @@
+package org.VenularSpore257.eternal_end_for_java.world;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.Musics;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.neoforged.neoforge.common.world.BiomeModifier;
+import net.neoforged.neoforge.common.world.BiomeModifiers;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import org.VenularSpore257.eternal_end_for_java.EternalEndBlocks;
+import org.VenularSpore257.eternal_end_for_java.Eternal_end_for_java;
+
+import java.util.List;
+
+/**
+ * Biomes for the Eternal End mod.
+ * 18 End dimension biomes converted from Bedrock addon.
+ */
+public class ModBiomes {
+    public static final DeferredRegister<BiomeModifier> BIOME_MODIFIERS =
+            DeferredRegister.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, Eternal_end_for_java.MODID);
+
+    // ========== BIOME RESOURCE KEYS ==========
+    // GILDED BIOMES
+    public static final ResourceKey<Biome> GILDED_FIELDS = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "gilded_fields"));
+    public static final ResourceKey<Biome> GILDED_RIDGE = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "gilded_ridge"));
+    public static final ResourceKey<Biome> GILDED_WOODS = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "gilded_woods"));
+
+    // NORMAL BIOMES
+    public static final ResourceKey<Biome> NORMAL_FOREST = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "normal_forest"));
+    public static final ResourceKey<Biome> NORMAL_WASTELAND = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "normal_wasteland"));
+
+    // PRISM BIOMES
+    public static final ResourceKey<Biome> PRISM_DEFAULT = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "prism_default"));
+    public static final ResourceKey<Biome> PRISM_FOREST = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "prism_forest"));
+    public static final ResourceKey<Biome> PRISM_PEAKS = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "prism_peaks"));
+    public static final ResourceKey<Biome> PRISM_PILLARS = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "prism_pillars"));
+    public static final ResourceKey<Biome> PRISM_PONDS = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "prism_ponds"));
+
+    // SHADOW BIOMES
+    public static final ResourceKey<Biome> SHADOW_FOLD = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "shadow_fold"));
+
+    // SPORELIGHT BIOMES
+    public static final ResourceKey<Biome> SPORELIGHT_FUNGAL_FOREST = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "sporelight_fungal_forest"));
+    public static final ResourceKey<Biome> SPORELIGHT_MIXED_FOREST = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "sporelight_mixed_forest"));
+    public static final ResourceKey<Biome> SPORELIGHT_SPORED_FOREST = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "sporelight_spored_forest"));
+    public static final ResourceKey<Biome> SPORELIGHT_VOID_ISLANDS = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "sporelight_void_islands"));
+
+    // VERDANT BIOMES
+    public static final ResourceKey<Biome> VERDANT_GLADE = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "verdant_glade"));
+    public static final ResourceKey<Biome> VERDANT_GROVE = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "verdant_grove"));
+    public static final ResourceKey<Biome> VERDANT_SPIKE_ISLANDS = ResourceKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "verdant_spike_islands"));
+
+    // ========== BIOME CREATION HELPERS ==========
+
+    /**
+     * Creates a standard End biome with custom properties
+     */
+    private static Biome makeEndBiome(Biome.Precipitation precipitation, float fogColor, float waterColor,
+                                       BiomeSpecialEffects.GrassColorModifier grassColorModifier,
+                                       MobSpawnSettings.Builder spawnSettings,
+                                       BiomeGenerationSettings.Builder generationSettings) {
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(precipitation == Biome.Precipitation.RAIN || precipitation == Biome.Precipitation.SNOW)
+                .precipitation(precipitation)
+                .temperature(0.5f)
+                .downfall(0.5f)
+                .specialEffects(new BiomeSpecialEffects.Builder()
+                        .fogColor(fogColor)
+                        .waterColor(waterColor)
+                        .waterFogColor(waterColor)
+                        .skyColor(0x050510)
+                        .foliageColorOverride(0x4A6B4A)
+                        .grassColorModifier(grassColorModifier)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .backgroundMusic(Musics.END)
+                        .build())
+                .mobSpawnSettings(spawnSettings.build())
+                .generationSettings(generationSettings.build())
+                .build();
+    }
+
+    /**
+     * Creates a basic End biome with default settings
+     */
+    private static Biome makeBasicEndBiome(int fogColor, int grassColor, int foliageColor) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+        BiomeGenerationSettings.Builder generationBuilder = new BiomeGenerationSettings.Builder();
+
+        // Default End spawns
+        spawnBuilder.addMobCharge(EntityType.ENDERMAN, 10, 1, 4);
+
+        return makeEndBiome(Biome.Precipitation.NONE, fogColor, 0x3F76E4,
+                BiomeSpecialEffects.GrassColorModifier.NONE, spawnBuilder, generationBuilder);
+    }
+
+    /**
+     * Creates a forested End biome with trees
+     */
+    private static Biome makeForestEndBiome(int fogColor, int grassColor, int foliageColor) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+        BiomeGenerationSettings.Builder generationBuilder = new BiomeGenerationSettings.Builder();
+
+        spawnBuilder.addMobCharge(EntityType.ENDERMAN, 10, 1, 4);
+
+        // Tree features will be added in ModFeatures
+
+        return makeEndBiome(Biome.Precipitation.NONE, fogColor, 0x3F76E4,
+                BiomeSpecialEffects.GrassColorModifier.NONE, spawnBuilder, generationBuilder);
+    }
+
+    // ========== BIOME DEFINITIONS FOR DATAGEN ==========
+    // These will be used by data generation to create JSON biome files
+
+    public static void bootstrap(BootstapContext<Biome> context) {
+        // GILDED FIELDS - Golden grassy plains with chorus trees
+        context.register(GILDED_FIELDS, makeBasicEndBiome(0xC9A862, 0x8B7355, 0x6B8E23));
+
+        // GILDED RIDGE - Hilly golden terrain
+        context.register(GILDED_RIDGE, makeBasicEndBiome(0xD4B87A, 0x9B8358, 0x7A9B32));
+
+        // GILDED WOODS - Dense chorus forest
+        context.register(GILDED_WOODS, makeForestEndBiome(0xC9A862, 0x8B7355, 0x6B8E23));
+
+        // NORMAL FOREST - Standard End forest
+        context.register(NORMAL_FOREST, makeForestEndBiome(0x808080, 0x4A4A4A, 0x3A3A3A));
+
+        // NORMAL WASTELAND - Barren End landscape
+        context.register(NORMAL_WASTELAND, makeBasicEndBiome(0x606060, 0x3A3A3A, 0x2A2A2A));
+
+        // PRISM DEFAULT - Colorful prismarine-like terrain
+        context.register(PRISM_DEFAULT, makeBasicEndBiome(0x7A8BC9, 0x5A6B99, 0x4A5B89));
+
+        // PRISM FOREST - Prismarine forest
+        context.register(PRISM_FOREST, makeForestEndBiome(0x7A8BC9, 0x5A6B99, 0x4A5B89));
+
+        // PRISM PEAKS - Mountainous prism formations
+        context.register(PRISM_PEAKS, makeBasicEndBiome(0x8A9BD9, 0x6A7BA9, 0x5A6B99));
+
+        // PRISM PILLARS - Tall pillar formations
+        context.register(PRISM_PILLARS, makeBasicEndBiome(0x7A8BC9, 0x5A6B99, 0x4A5B89));
+
+        // PRISM PONDS - Water-filled prism landscape
+        context.register(PRISM_PONDS, makeBasicEndBiome(0x6A7BB9, 0x4A5B89, 0x3A4B79));
+
+        // SHADOW FOLD - Dark mysterious forest
+        context.register(SHADOW_FOLD, makeForestEndBiome(0x1A1A2E, 0x0A0A1E, 0x2A2A3E));
+
+        // SPORELIGHT FUNGAL FOREST - Fungal mushroom forest
+        context.register(SPORELIGHT_FUNGAL_FOREST, makeForestEndBiome(0x4A3A5A, 0x6B5A7B, 0x5A4A6A));
+
+        // SPORELIGHT MIXED FOREST - Mixed fungal and spore trees
+        context.register(SPORELIGHT_MIXED_FOREST, makeForestEndBiome(0x5A4A6A, 0x7B6A8B, 0x6A5A7A));
+
+        // SPORELIGHT SPORED FOREST - Spore-dominated forest
+        context.register(SPORELIGHT_SPORED_FOREST, makeForestEndBiome(0x4A3A5A, 0x6B5A7B, 0x5A4A6A));
+
+        // SPORELIGHT VOID ISLANDS - Floating fungal islands
+        context.register(SPORELIGHT_VOID_ISLANDS, makeBasicEndBiome(0x3A2A4A, 0x5B4A6B, 0x4A3A5A));
+
+        // VERDANT GLADE - Green end highlands
+        context.register(VERDANT_GLADE, makeForestEndBiome(0x5A8B5A, 0x6B9B6B, 0x5A8B5A));
+
+        // VERDANT GROVE - Dense green forest
+        context.register(VERDANT_GROVE, makeForestEndBiome(0x6B9B6B, 0x7BAB7B, 0x6B9B6B));
+
+        // VERDANT SPIKE ISLANDS - Spiky green island formations
+        context.register(VERDANT_SPIKE_ISLANDS, makeBasicEndBiome(0x5A8B5A, 0x6B9B6B, 0x5A8B5A));
+    }
+
+    // ========== BIOME MODIFIERS FOR SPAWNING IN THE END ==========
+
+    // Add biomes to the End dimension
+    public static final DeferredHolder<BiomeModifier, BiomeModifier> ADD_END_BIOMES = BIOME_MODIFIERS.register("add_end_biomes",
+            () -> new BiomeModifiers.AddBiomesBiomeModifier(
+                    new BiomeModifiers.BiomeModifier.BiomeContext(
+                            List.of(
+                                    // Gilded biomes
+                                    BiomeContextKey.of(GILDED_FIELDS),
+                                    BiomeContextKey.of(GILDED_RIDGE),
+                                    BiomeContextKey.of(GILDED_WOODS),
+                                    // Normal biomes
+                                    BiomeContextKey.of(NORMAL_FOREST),
+                                    BiomeContextKey.of(NORMAL_WASTELAND),
+                                    // Prism biomes
+                                    BiomeContextKey.of(PRISM_DEFAULT),
+                                    BiomeContextKey.of(PRISM_FOREST),
+                                    BiomeContextKey.of(PRISM_PEAKS),
+                                    BiomeContextKey.of(PRISM_PILLARS),
+                                    BiomeContextKey.of(PRISM_PONDS),
+                                    // Shadow biome
+                                    BiomeContextKey.of(SHADOW_FOLD),
+                                    // Sporelight biomes
+                                    BiomeContextKey.of(SPORELIGHT_FUNGAL_FOREST),
+                                    BiomeContextKey.of(SPORELIGHT_MIXED_FOREST),
+                                    BiomeContextKey.of(SPORELIGHT_SPORED_FOREST),
+                                    BiomeContextKey.of(SPORELIGHT_VOID_ISLANDS),
+                                    // Verdant biomes
+                                    BiomeContextKey.of(VERDANT_GLADE),
+                                    BiomeContextKey.of(VERDANT_GROVE),
+                                    BiomeContextKey.of(VERDANT_SPIKE_ISLANDS)
+                            )
+                    ),
+                    List.of(BiomeModifiers.BiomeModifier.TargetBiome.fromBiome(
+                            ResourceKey.create(Registries.BIOME, ResourceLocation.withDefaultNamespace("the_end"))
+                    ))
+            ));
+
+    // Helper class for creating biome context keys
+    private static class BiomeContextKey {
+        public static ResourceKey<Biome> of(ResourceKey<Biome> key) {
+            return key;
+        }
+    }
+
+    public static void register() {
+        // Registration handled by data generation and biome modifiers
+    }
+}

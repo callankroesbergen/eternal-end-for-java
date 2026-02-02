@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/door_bottom_left_open",
+  "textures": {
+    "bottom": "eternal_end_for_java:block/wood/chorus/door_l"
+  }
+}

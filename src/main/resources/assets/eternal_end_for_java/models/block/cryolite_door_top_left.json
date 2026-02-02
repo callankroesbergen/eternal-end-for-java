@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "textures": {
+    "top": "eternal_end_for_java:block/wood/cryolite/door_u"
+  }
+}

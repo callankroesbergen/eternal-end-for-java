@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/door_top_right",
+  "textures": {
+    "top": "eternal_end_for_java:block/wood/spored/door_u"
+  }
+}

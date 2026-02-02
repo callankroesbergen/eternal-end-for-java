@@ -1,0 +1,62 @@
+{
+  "variants": {
+    "east=false,north=false,south=false,west=false": {
+      "model": "eternal_end_for_java:block/honey_fence_post"
+    },
+    "east=false,north=true,south=false,west=false": {
+      "model": "eternal_end_for_java:block/honey_fence_side",
+      "y": 90
+    },
+    "east=true,north=false,south=false,west=false": {
+      "model": "eternal_end_for_java:block/honey_fence_side"
+    },
+    "east=false,north=false,south=true,west=false": {
+      "model": "eternal_end_for_java:block/honey_fence_side",
+      "y": 270
+    },
+    "east=false,north=false,south=false,west=true": {
+      "model": "eternal_end_for_java:block/honey_fence_side",
+      "y": 180
+    },
+    "east=true,north=true,south=false,west=false": {
+      "model": "eternal_end_for_java:block/honey_fence_side_north"
+    },
+    "east=true,north=false,south=true,west=false": {
+      "model": "eternal_end_for_java:block/honey_fence_side_north",
+      "y": 90
+    },
+    "east=false,north=false,south=true,west=true": {
+      "model": "eternal_end_for_java:block/honey_fence_side_north",
+      "y": 180
+    },
+    "east=false,north=true,south=false,west=true": {
+      "model": "eternal_end_for_java:block/honey_fence_side_north",
+      "y": 270
+    },
+    "east=true,north=false,south=false,west=true": {
+      "model": "eternal_end_for_java:block/honey_fence_side_north_east"
+    },
+    "east=false,north=true,south=true,west=false": {
+      "model": "eternal_end_for_java:block/honey_fence_side_north_east",
+      "y": 90
+    },
+    "east=true,north=true,south=true,west=false": {
+      "model": "eternal_end_for_java:block/honey_fence_side_north_east_west"
+    },
+    "east=true,north=false,south=true,west=true": {
+      "model": "eternal_end_for_java:block/honey_fence_side_north_east_west",
+      "y": 90
+    },
+    "east=false,north=true,south=true,west=true": {
+      "model": "eternal_end_for_java:block/honey_fence_side_north_east_west",
+      "y": 180
+    },
+    "east=true,north=true,south=false,west=true": {
+      "model": "eternal_end_for_java:block/honey_fence_side_north_east_west",
+      "y": 270
+    },
+    "east=true,north=true,south=true,west=true": {
+      "model": "eternal_end_for_java:block/honey_fence_side_all"
+    }
+  }
+}

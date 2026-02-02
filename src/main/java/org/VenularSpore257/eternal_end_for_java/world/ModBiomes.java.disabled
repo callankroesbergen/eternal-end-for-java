@@ -1,0 +1,257 @@
+package org.VenularSpore257.eternal_end_for_java.world;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.Musics;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import org.VenularSpore257.eternal_end_for_java.EternalEndBlocks;
+import org.VenularSpore257.eternal_end_for_java.Eternal_end_for_java;
+
+import java.util.List;
+
+/**
+ * Biomes for the Eternal End mod.
+ * 18 End dimension biomes converted from Bedrock addon.
+ *
+ * Biome Categories:
+ * - GILDED (3 biomes): Golden chorus forests and plains
+ * - NORMAL (2 biomes): Standard End wastelands and forests
+ * - PRISM (5 biomes): Colorful prismarine terrain variants
+ * - SHADOW (1 biome): Dark mysterious forest
+ * - SPORELIGHT (4 biomes): Fungal and spore forests
+ * - VERDANT (3 biomes): Green End highlands and islands
+ */
+public class ModBiomes {
+
+    // ========== BIOME RESOURCE KEYS ==========
+    // GILDED BIOMES - Golden grassy plains with chorus trees
+    public static final ResourceKey<Biome> GILDED_FIELDS = createKey("gilded_fields");
+    public static final ResourceKey<Biome> GILDED_RIDGE = createKey("gilded_ridge");
+    public static final ResourceKey<Biome> GILDED_WOODS = createKey("gilded_woods");
+
+    // NORMAL BIOMES - Standard End terrain
+    public static final ResourceKey<Biome> NORMAL_FOREST = createKey("normal_forest");
+    public static final ResourceKey<Biome> NORMAL_WASTELAND = createKey("normal_wasteland");
+
+    // PRISM BIOMES - Colorful prismarine-like terrain
+    public static final ResourceKey<Biome> PRISM_DEFAULT = createKey("prism_default");
+    public static final ResourceKey<Biome> PRISM_FOREST = createKey("prism_forest");
+    public static final ResourceKey<Biome> PRISM_PEAKS = createKey("prism_peaks");
+    public static final ResourceKey<Biome> PRISM_PILLARS = createKey("prism_pillars");
+    public static final ResourceKey<Biome> PRISM_PONDS = createKey("prism_ponds");
+
+    // SHADOW BIOMES - Dark mysterious forest
+    public static final ResourceKey<Biome> SHADOW_FOLD = createKey("shadow_fold");
+
+    // SPORELIGHT BIOMES - Fungal and spore forests
+    public static final ResourceKey<Biome> SPORELIGHT_FUNGAL_FOREST = createKey("sporelight_fungal_forest");
+    public static final ResourceKey<Biome> SPORELIGHT_MIXED_FOREST = createKey("sporelight_mixed_forest");
+    public static final ResourceKey<Biome> SPORELIGHT_SPORED_FOREST = createKey("sporelight_spored_forest");
+    public static final ResourceKey<Biome> SPORELIGHT_VOID_ISLANDS = createKey("sporelight_void_islands");
+
+    // VERDANT BIOMES - Green end highlands
+    public static final ResourceKey<Biome> VERDANT_GLADE = createKey("verdant_glade");
+    public static final ResourceKey<Biome> VERDANT_GROVE = createKey("verdant_grove");
+    public static final ResourceKey<Biome> VERDANT_SPIKE_ISLANDS = createKey("verdant_spike_islands");
+
+    private static ResourceKey<Biome> createKey(String name) {
+        return ResourceKey.create(Registries.BIOME,
+                ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, name));
+    }
+
+    // ========== BIOME DEFINITIONS FOR DATAGEN ==========
+    // Biome data will be generated to JSON files
+    // These methods provide configuration for data generation
+
+    /**
+     * Fog color values for each biome (hex RGB)
+     */
+    public static final int[] FOG_COLORS = {
+            0xC9A862, // gilded_fields
+            0xD4B87A, // gilded_ridge
+            0xC9A862, // gilded_woods
+            0x808080, // normal_forest
+            0x606060, // normal_wasteland
+            0x7A8BC9, // prism_default
+            0x7A8BC9, // prism_forest
+            0x8A9BD9, // prism_peaks
+            0x7A8BC9, // prism_pillars
+            0x6A7BB9, // prism_ponds
+            0x1A1A2E, // shadow_fold
+            0x4A3A5A, // sporelight_fungal_forest
+            0x5A4A6A, // sporelight_mixed_forest
+            0x4A3A5A, // sporelight_spored_forest
+            0x3A2A4A, // sporelight_void_islands
+            0x5A8B5A, // verdant_glade
+            0x6B9B6B, // verdant_grove
+            0x5A8B5A, // verdant_spike_islands
+    };
+
+    /**
+     * Biome categories for spawning logic
+     */
+    public enum BiomeCategory {
+        GILDED,
+        NORMAL,
+        PRISM,
+        SHADOW,
+        SPORELIGHT,
+        VERDANT
+    }
+
+    /**
+     * Gets the category for a biome
+     */
+    public static BiomeCategory getCategory(ResourceKey<Biome> biome) {
+        String name = biome.location().getPath();
+        if (name.startsWith("gilded")) return BiomeCategory.GILDED;
+        if (name.startsWith("normal")) return BiomeCategory.NORMAL;
+        if (name.startsWith("prism")) return BiomeCategory.PRISM;
+        if (name.startsWith("shadow")) return BiomeCategory.SHADOW;
+        if (name.startsWith("sporelight")) return BiomeCategory.SPORELIGHT;
+        if (name.startsWith("verdant")) return BiomeCategory.VERDANT;
+        return BiomeCategory.NORMAL;
+    }
+
+    /**
+     * All biome resource keys for iteration
+     */
+    public static final List<ResourceKey<Biome>> ALL_BIOMES = List.of(
+            GILDED_FIELDS, GILDED_RIDGE, GILDED_WOODS,
+            NORMAL_FOREST, NORMAL_WASTELAND,
+            PRISM_DEFAULT, PRISM_FOREST, PRISM_PEAKS, PRISM_PILLARS, PRISM_PONDS,
+            SHADOW_FOLD,
+            SPORELIGHT_FUNGAL_FOREST, SPORELIGHT_MIXED_FOREST, SPORELIGHT_SPORED_FOREST, SPORELIGHT_VOID_ISLANDS,
+            VERDANT_GLADE, VERDANT_GROVE, VERDANT_SPIKE_ISLANDS
+    );
+
+    /**
+     * Forest biomes that should spawn trees
+     */
+    public static final List<ResourceKey<Biome>> FOREST_BIOMES = List.of(
+            GILDED_WOODS,
+            NORMAL_FOREST,
+            PRISM_FOREST,
+            SHADOW_FOLD,
+            SPORELIGHT_FUNGAL_FOREST,
+            SPORELIGHT_MIXED_FOREST,
+            SPORELIGHT_SPORED_FOREST,
+            VERDANT_GLADE,
+            VERDANT_GROVE
+    );
+
+    /**
+     * Plain biomes (grass and vegetation only)
+     */
+    public static final List<ResourceKey<Biome>> PLAIN_BIOMES = List.of(
+            GILDED_FIELDS,
+            GILDED_RIDGE,
+            NORMAL_WASTELAND,
+            PRISM_DEFAULT,
+            PRISM_PEAKS,
+            PRISM_PILLARS,
+            PRISM_PONDS,
+            SPORELIGHT_VOID_ISLANDS,
+            VERDANT_SPIKE_ISLANDS
+    );
+
+    // ========== BIOME SPAWN SETTINGS ==========
+
+    /**
+     * Default End entity spawns for all biomes
+     */
+    public static MobSpawnSettings.Builder defaultEndSpawns() {
+        MobSpawnSettings.Builder builder = new MobSpawnSettings.Builder();
+        builder.addMobCharge(EntityType.ENDERMAN, 10, 1, 4);
+        return builder;
+    }
+
+    /**
+     * Forest spawns (adds endermite)
+     */
+    public static MobSpawnSettings.Builder forestSpawns() {
+        MobSpawnSettings.Builder builder = defaultEndSpawns();
+        // Add forest-specific mobs when entities are implemented
+        return builder;
+    }
+
+    // ========== BIOME GENERATION SETTINGS ==========
+
+    /**
+     * Default generation settings for End biomes
+     */
+    public static BiomeGenerationSettings.Builder defaultEndGeneration() {
+        BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder();
+        // Features will be added via biome modifiers
+        return builder;
+    }
+
+    // ========== TERRAIN GENERATION ==========
+
+    /**
+     * Terrain settings for different biome types:
+     *
+     * GILDED: Rolling hills with golden grass
+     * NORMAL: Flat to undulating terrain
+     * PRISM: Pillars and peaks formation
+     * SHADOW: Dark forest with canopy
+     * SPORELIGHT: Floating islands and fungal terrain
+     * VERDANT: High hills and spike formations
+     */
+
+    /**
+     * Block that forms the surface of each biome
+     */
+    public static class SurfaceBlocks {
+        public static final BlockState GILDED_SURFACE = EternalEndBlocks.GILDED_ENDRAL.get().defaultBlockState();
+        public static final BlockState NORMAL_SURFACE = net.minecraft.world.level.block.Blocks.END_STONE.defaultBlockState();
+        public static final BlockState PRISM_SURFACE = EternalEndBlocks.ECLIPSED_ENDRAL.get().defaultBlockState();
+        public static final BlockState SHADOW_SURFACE = EternalEndBlocks.MYCELION_ENDRAL.get().defaultBlockState();
+        public static final BlockState SPORELIGHT_SURFACE = EternalEndBlocks.MYCELION_ENDRAL.get().defaultBlockState();
+        public static final BlockState VERDANT_SURFACE = EternalEndBlocks.VERDANT_ENDRAL.get().defaultBlockState();
+    }
+
+    // ========== BIOME FEATURE CONFIGURATION ==========
+
+    /**
+     * Tree types for each biome category
+     */
+    public static class TreeFeatures {
+        public static final ResourceKey<net.minecraft.world.level.levelgen.feature.ConfiguredFeature<?, ?>> GILDED_TREE = ModFeatures.CHORUS_TREE;
+        public static final ResourceKey<net.minecraft.world.level.levelgen.feature.ConfiguredFeature<?, ?>> NORMAL_TREE = ModFeatures.CHORUS_TREE;
+        public static final ResourceKey<net.minecraft.world.level.levelgen.feature.ConfiguredFeature<?, ?>> PRISM_TREE = ModFeatures.CRYOLITE_TREE;
+        public static final ResourceKey<net.minecraft.world.level.levelgen.feature.ConfiguredFeature<?, ?>> SHADOW_TREE = ModFeatures.WHISPERING_TREE;
+        public static final ResourceKey<net.minecraft.world.level.levelgen.feature.ConfiguredFeature<?, ?>> SPORELIGHT_FUNGAL_TREE = ModFeatures.FUNGAL_TREE;
+        public static final ResourceKey<net.minecraft.world.level.levelgen.feature.ConfiguredFeature<?, ?>> SPORELIGHT_SPORED_TREE = ModFeatures.SPORED_TREE;
+        public static final ResourceKey<net.minecraft.world.level.levelgen.feature.ConfiguredFeature<?, ?>> VERDANT_TREE = ModFeatures.HONEY_TREE;
+    }
+
+    /**
+     * Vegetation types for each biome
+     */
+    public static class VegetationFeatures {
+        // Gilded biomes: golden_void_grass, gilded_grass
+        public static final BlockState GILDED_GRASS = EternalEndBlocks.GILDED_GRASS.get().defaultBlockState();
+
+        // Normal biomes: flare_grass, flare_fern
+        public static final BlockState NORMAL_GRASS = EternalEndBlocks.FLARE_GRASS.get().defaultBlockState();
+
+        // Prism biomes: starglow_grass, moonflower
+        public static final BlockState PRISM_GRASS = EternalEndBlocks.STARGLOW_GRASS.get().defaultBlockState();
+
+        // Shadow biome: curlwhisp_grass, shadow_wisteria
+        public static final BlockState SHADOW_GRASS = EternalEndBlocks.CURLWHISP_GRASS.get().defaultBlockState();
+
+        // Sporelight biomes: sporesprout, tanglecaps
+        public static final BlockState SPORELIGHT_GRASS = EternalEndBlocks.SPORESPROUT.get().defaultBlockState();
+
+        // Verdant biomes: verdant_stalk, verdant_spike
+        public static final BlockState VERDANT_GRASS = EternalEndBlocks.VERDANT_STALK.get().defaultBlockState();
+    }
+}

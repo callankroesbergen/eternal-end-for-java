@@ -1,0 +1,94 @@
+{
+  "animations": {
+    "idle": {
+      "loop": true,
+      "anim_time_update": "query.anim_time + query.delta_time",
+      "animation_length": 2.0,
+      "blend_expression": {
+        "blend_value_type": "linear",
+        "expression": "math.lerp(0, 1, math.min(query.anim_time * 2, 1))"
+      },
+      "bones": {
+        "body": {
+          "position": {
+            "0.0": [0, 0, 0],
+            "0.5": [0, 0.5, 0],
+            "1.0": [0, 0, 0],
+            "1.5": [0, -0.5, 0],
+            "2.0": [0, 0, 0]
+          },
+          "rotation": {
+            "0.0": [0, 0, 0],
+            "0.5": [2, 0, 0],
+            "1.0": [0, 0, 0],
+            "1.5": [-2, 0, 0],
+            "2.0": [0, 0, 0]
+          }
+        }
+      }
+    },
+    "walk": {
+      "loop": true,
+      "anim_time_update": "query.anim_time + query.delta_time",
+      "animation_length": 1.0,
+      "blend_expression": {
+        "blend_value_type": "linear",
+        "expression": "math.lerp(0, 1, math.min(query.anim_time * 3, 1))"
+      },
+      "bones": {
+        "body": {
+          "position": {
+            "0.0": [0, 0, 0],
+            "0.25": [0, 1, 0],
+            "0.5": [0, 0, 0],
+            "0.75": [0, 1, 0],
+            "1.0": [0, 0, 0]
+          },
+          "rotation": {
+            "0.0": [0, 0, 0],
+            "0.25": [5, 0, 0],
+            "0.5": [0, 0, 0],
+            "0.75": [-5, 0, 0],
+            "1.0": [0, 0, 0]
+          }
+        }
+      }
+    },
+    "idle_to_walk": {
+      "loop": false,
+      "anim_time_update": "query.anim_time + query.delta_time",
+      "animation_length": 0.25,
+      "bones": {
+        "body": {
+          "position": {
+            "0.0": [0, 0, 0],
+            "0.125": [0, 0.5, 0],
+            "0.25": [0, 1, 0]
+          },
+          "rotation": {
+            "0.0": [0, 0, 0],
+            "0.25": [5, 0, 0]
+          }
+        }
+      }
+    },
+    "walk_to_idle": {
+      "loop": false,
+      "anim_time_update": "query.anim_time + query.delta_time",
+      "animation_length": 0.25,
+      "bones": {
+        "body": {
+          "position": {
+            "0.0": [0, 1, 0],
+            "0.125": [0, 0.5, 0],
+            "0.25": [0, 0, 0]
+          },
+          "rotation": {
+            "0.0": [5, 0, 0],
+            "0.25": [0, 0, 0]
+          }
+        }
+      }
+    }
+  }
+}

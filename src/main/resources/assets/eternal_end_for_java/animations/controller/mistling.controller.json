@@ -1,0 +1,59 @@
+{
+  "format_version": "1.10.0",
+  "animations": {
+    "idle": "animation.mistling.idle",
+    "walk": "animation.mistling.walk",
+    "idle_to_walk": "animation.mistling.idle_to_walk",
+    "walk_to_idle": "animation.mistling.walk_to_idle"
+  },
+  "states": [
+    {
+      "name": "default",
+      "animations": ["idle"],
+      "transitions": [
+        {
+          "if": "query.is_moving",
+          "play": "idle_to_walk"
+        }
+      ]
+    },
+    {
+      "name": "idle_to_walk",
+      "animations": ["idle_to_walk"],
+      "transitions": [
+        {
+          "if": "query.anim_time > 0.24",
+          "play": "walking"
+        },
+        {
+          "if": "!query.is_moving",
+          "play": "default"
+        }
+      ]
+    },
+    {
+      "name": "walking",
+      "animations": ["walk"],
+      "transitions": [
+        {
+          "if": "!query.is_moving",
+          "play": "walk_to_idle"
+        }
+      ]
+    },
+    {
+      "name": "walk_to_idle",
+      "animations": ["walk_to_idle"],
+      "transitions": [
+        {
+          "if": "query.anim_time > 0.24",
+          "play": "default"
+        },
+        {
+          "if": "query.is_moving",
+          "play": "walking"
+        }
+      ]
+    }
+  ]
+}

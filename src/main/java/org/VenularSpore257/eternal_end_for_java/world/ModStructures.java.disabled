@@ -1,0 +1,323 @@
+package org.VenularSpore257.eternal_end_for_java.world;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.StructureType;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
+import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
+import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
+import net.minecraft.world.level.levelgen.structure.placement.StructurePlacementType;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import org.VenularSpore257.eternal_end_for_java.Eternal_end_for_java;
+
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * Structures for the Eternal End mod.
+ * Converts 190 Bedrock .mcstructure files to Java structure sets.
+ *
+ * Structure types:
+ * - Villages (gilded, normal, prism, shadow, sporelight)
+ * - Dungeons (hanging, normal)
+ * - Ruins (hanging, normal, shipwrecks)
+ * - Trees (big and small variants for each wood type)
+ * - Hills and terrain features
+ * - Geodes
+ * - Special structures (arena, ship)
+ */
+public class ModStructures {
+    public static final DeferredRegister<Structure<?>> STRUCTURES =
+            DeferredRegister.create(Registries.STRUCTURE, Eternal_end_for_java.MODID);
+    public static final DeferredRegister<StructurePlacementType<?>> STRUCTURE_PLACEMENT_TYPES =
+            DeferredRegister.create(Registries.STRUCTURE_PLACEMENT_TYPE, Eternal_end_for_java.MODID);
+
+    // ========== STRUCTURE TYPE KEYS ==========
+    // Village structures
+    public static final ResourceKey<Structure> GILDED_VILLAGE = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "gilded_village"));
+    public static final ResourceKey<Structure> NORMAL_VILLAGE = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "normal_village"));
+    public static final ResourceKey<Structure> PRISM_VILLAGE = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "prism_village"));
+    public static final ResourceKey<Structure> SHADOW_VILLAGE = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "shadow_village"));
+    public static final ResourceKey<Structure> SPORELIGHT_VILLAGE = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "sporelight_village"));
+
+    // Dungeon structures
+    public static final ResourceKey<Structure> HANGING_DUNGEON = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "hanging_dungeon"));
+    public static final ResourceKey<Structure> HANGING_MINES = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "hanging_mines"));
+    public static final ResourceKey<Structure> NORMAL_MINES = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "normal_mines"));
+
+    // Ruin structures
+    public static final ResourceKey<Structure> HANGING_RUINS = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "hanging_ruins"));
+    public static final ResourceKey<Structure> NORMAL_RUINS = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "normal_ruins"));
+    public static final ResourceKey<Structure> SHIPWRECK = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "shipwreck"));
+
+    // Special structures
+    public static final ResourceKey<Structure> SHADOW_ARENA = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "shadow_arena"));
+    public static final ResourceKey<Structure> SPORELIGHT_SHIP = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "sporelight_ship"));
+
+    // Tree structures (large variants)
+    public static final ResourceKey<Structure> GILDED_BIG_TREE = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "gilded_big_tree"));
+    public static final ResourceKey<Structure> NORMAL_TREE = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "normal_tree"));
+    public static final ResourceKey<Structure> PRISM_TREE = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "prism_tree"));
+    public static final ResourceKey<Structure> SHADOW_BIG_TREE = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "shadow_big_tree"));
+    public static final ResourceKey<Structure> SPORELIGHT_FUNGAL_BIG_TREE = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "sporelight_fungal_big_tree"));
+    public static final ResourceKey<Structure> SPORELIGHT_SPORE_BIG_TREE = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "sporelight_spore_big_tree"));
+    public static final ResourceKey<Structure> VERDANT_BIG_TREE = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "verdant_big_tree"));
+
+    // Hill and terrain structures
+    public static final ResourceKey<Structure> NORMAL_HILLS = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "normal_hills"));
+    public static final ResourceKey<Structure> SPORELIGHT_FUNGAL_HILLS = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "sporelight_fungal_hills"));
+    public static final ResourceKey<Structure> SPORELIGHT_SPORE_HILLS = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "sporelight_spore_hills"));
+
+    // Island structures
+    public static final ResourceKey<Structure> SPORELIGHT_FUNGAL_ISLAND = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "sporelight_fungal_island"));
+    public static final ResourceKey<Structure> SPORELIGHT_SPORE_ISLAND = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "sporelight_spore_island"));
+
+    // Plato structures
+    public static final ResourceKey<Structure> SPORELIGHT_PLATO = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "sporelight_plato"));
+
+    // Geode structures
+    public static final ResourceKey<Structure> GILDED_GEODE = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "gilded_geode"));
+
+    // Verdant ruins
+    public static final ResourceKey<Structure> VERDANT_RUINS = ResourceKey.create(Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Eternal_end_for_java.MODID, "verdant_ruins"));
+
+    // ========== STRUCTURE VARIANTS COUNT ==========
+    /**
+     * Structure variant counts from Bedrock addon:
+     * - gilded.village: 8 variants
+     * - gilded.big_tree: 4 variants
+     * - gilded.small_tree: 4 variants
+     * - gilded.geode: 4 variants
+     * - normal.village: 6 variants
+     * - normal.tree: 5 variants
+     * - normal.hills: 17 variants
+     * - normal.hanging_dungeon: 4 variants
+     * - normal.hanging_mines: 5 variants
+     * - normal.hanging_ruins: 4 variants
+     * - normal.mines: 6 variants
+     * - normal.ruin: 4 variants
+     * - normal.shipwreck: 4 variants
+     * - prism.village: 6 variants
+     * - prism.tree: 8 variants
+     * - shadow.village: 8 variants
+     * - shadow.big_tree: 5 variants
+     * - shadow.small_tree: 5 variants
+     * - shadow.arena: 1 variant (6 parts)
+     * - sporelight.village: 4 variants
+     * - sporelight.fungal_big_tree: 7 variants
+     * - sporelight.fungal_small_tree: 7 variants
+     * - sporelight.fungal_hills: 3 variants
+     * - sporelight.fungal_island: 5 variants
+     * - sporelight.spore_big_tree: 5 variants
+     * - sporelight.spore_small_tree: 5 variants
+     * - sporelight.spore_hills: 5 variants
+     * - sporelight.spore_island: 8 variants
+     * - sporelight.plato: 4 variants
+     * - sporelight.ship: 1 variant
+     * - verdant.big_tree: 4 variants
+     * - verdant.small_tree: 4 variants
+     * - verdant.ruin: 4 variants
+     * - Plus 7 utility structures (bookshelf, brewingstand, pot, mobspawner, dungeon.chest, village.chest, spawner variants)
+     *
+     * Total: 190 structure files
+     */
+
+    // ========== STRUCTURE REGISTRATION HELPERS ==========
+
+    /**
+     * Structure conversion notes:
+     * .mcstructure files need to be converted to .nbt format for use in Java Edition.
+     *
+     * Conversion options:
+     * 1. Use structure block in-game to export .mcstructure to .nbt
+     * 2. Use external conversion tools (e.g., Amulet Editor, MCCToolChest)
+     * 3. Parse .mcstructure format and convert programmatically
+     *
+     * For now, we register the structure types. Actual template loading requires .nbt files
+     * in src/main/resources/data/eternal_end_for_java/structures/
+     */
+
+    /**
+     * Creates a basic village structure configuration
+     */
+    private static Structure.StructureSettings createVillageSettings() {
+        return new Structure.StructureSettings(
+                List.of(ModStructures.GILDED_VILLAGE.loc(), ModStructures.NORMAL_VILLAGE.loc()),
+                Optional.of(new RandomSpreadStructurePlacement(32, 8, 12345, false)),
+                Optional.empty()
+        );
+    }
+
+    /**
+     * Creates a dungeon structure configuration
+     */
+    private static Structure.StructureSettings createDungeonSettings() {
+        return new Structure.StructureSettings(
+                List.of(ModStructures.HANGING_DUNGEON.loc()),
+                Optional.of(new RandomSpreadStructurePlacement(40, 20, 23456, false)),
+                Optional.empty()
+        );
+    }
+
+    // ========== BOOTSTRAP FOR STRUCTURES ==========
+
+    public static void bootstrap(BootstapContext<Structure> context) {
+        // Note: Structure registration requires actual structure templates (.nbt files)
+        // These will be registered in data generation
+
+        // Village structures
+        // context.register(GILDED_VILLAGE, new Structure(NoneFeatureConfiguration.CODEC, createVillageSettings()));
+        // Additional structure registrations will be done via data generators
+    }
+
+    // ========== STRUCTURE SET REGISTRATION ==========
+    // Structure sets control how structures spawn in the world
+
+    /**
+     * Structure sets for the End dimension:
+     *
+     * Villages:
+     * - gilded_village_set - Spawns in gilded biomes
+     * - normal_village_set - Spawns in normal biomes
+     * - prism_village_set - Spawns in prism biomes
+     * - shadow_village_set - Spawns in shadow biome
+     * - sporelight_village_set - Spawns in sporelight biomes
+     *
+     * Dungeons:
+     * - hanging_dungeon_set - Hanging dungeons in void
+     * - hanging_mines_set - Hanging mineshafts
+     * - normal_mines_set - Ground-level mines
+     *
+     * Ruins:
+     * - hanging_ruins_set - Hanging ruins
+     * - normal_ruins_set - Ground ruins
+     * - shipwreck_set - Void shipwrecks
+     *
+     * Special:
+     * - shadow_arena_set - Boss arena in shadow biome
+     * - sporelight_ship_set - Flying ship in sporelight biome
+     * - geode_set - Ametrine and gilded geodes
+     *
+     * These will be configured via JSON in data/eternal_end_for_java/worldgen/structure_set/
+     */
+
+    // ========== MCSTRUCTURE TO NBT CONVERSION GUIDE ==========
+
+    /**
+     * To convert .mcstructure files to .nbt:
+     *
+     * 1. IN-GAME METHOD (Recommended):
+     *    - Load Bedrock world with structure file
+     *    - Use structure block to export to .nbt
+     *    - Place in src/main/resources/data/eternal_end_for_java/structures/
+     *
+     * 2. AUTOMATED CONVERSION:
+     *    - Use structure conversion tool
+     *    - Parse .mcstructure format (Little-endian NBT)
+     *    - Convert to Java structure format
+     *    - Save as .nbt
+     *
+     * 3. STRUCTURE ORGANIZATION:
+     *    structures/
+     *    ├── village/
+     *    │   ├── gilded/
+     *    │   │   ├── gilded_village_1.nbt
+     *    │   │   └── ...
+     *    │   ├── normal/
+     *    │   ├── prism/
+     *    │   ├── shadow/
+     *    │   └── sporelight/
+     *    ├── dungeon/
+     *    │   ├── hanging_dungeon_1.nbt
+     *    │   └── ...
+     *    ├── ruins/
+     *    ├── trees/
+     *    │   ├── gilded_big_tree_1.nbt
+     *    │   └── ...
+     *    ├── hills/
+     *    ├── islands/
+     *    └── special/
+     *        ├── shadow_arena.nbt
+     *        └── sporelight_ship.nbt
+     */
+
+    // ========== STRUCTURE SPAWNING CONFIGURATION ==========
+
+    /**
+     * Structure spawning parameters:
+     *
+     * Villages:
+     * - Spacing: 32-48 chunks apart
+     * - Separation: 8-12 chunks (prevents overlap)
+     * - Biome restrictions: Specific to each village type
+     *
+     * Dungeons:
+     * - Spacing: 30-40 chunks
+     * - Separation: 15-20 chunks
+     * - Y-level: Variable (hanging vs ground)
+     *
+     * Ruins:
+     * - Spacing: 20-30 chunks
+     * - Separation: 8-12 chunks
+     *
+     * Large Trees:
+     * - Use configured features instead of structures
+     * - Spawn density: 2-5 per biome chunk
+     *
+     * Geodes:
+     * - Spacing: 24-32 chunks
+     * - Separation: 12-16 chunks
+     * - Can replace solid blocks
+     */
+
+    public static void register() {
+        // Structure registration will be completed when .nbt files are available
+        // For now, this class serves as documentation and structure key definitions
+    }
+
+    /**
+     * TODO List for structure implementation:
+     *
+     * 1. Convert all 190 .mcstructure files to .nbt format
+     * 2. Organize .nbt files by structure type in resources
+     * 3. Create structure set JSONs for spawning configuration
+     * 4. Register structure template processors (for loot, spawners, etc.)
+     * 5. Configure structure biome restrictions
+     * 6. Test structure spawning in-game
+     * 7. Adjust spacing and separation values
+     */
+}

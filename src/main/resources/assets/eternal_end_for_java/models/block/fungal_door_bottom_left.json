@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/door_bottom_left",
+  "textures": {
+    "bottom": "eternal_end_for_java:block/wood/fungal/door_u"
+  }
+}

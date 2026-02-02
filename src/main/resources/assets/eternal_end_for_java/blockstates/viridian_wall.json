@@ -1,0 +1,29 @@
+{
+  "variants": {
+    "": {
+      "model": "eternal_end_for_java:block/viridian_wall_post"
+    },
+    "up=true": {
+      "model": "eternal_end_for_java:block/viridian_wall_post"
+    },
+    "north=true": {
+      "model": "eternal_end_for_java:block/viridian_wall_side",
+      "uvlock": true
+    },
+    "east=true": {
+      "model": "eternal_end_for_java:block/viridian_wall_side",
+      "y": 90,
+      "uvlock": true
+    },
+    "south=true": {
+      "model": "eternal_end_for_java:block/viridian_wall_side",
+      "y": 180,
+      "uvlock": true
+    },
+    "west=true": {
+      "model": "eternal_end_for_java:block/viridian_wall_side",
+      "y": 270,
+      "uvlock": true
+    }
+  }
+}

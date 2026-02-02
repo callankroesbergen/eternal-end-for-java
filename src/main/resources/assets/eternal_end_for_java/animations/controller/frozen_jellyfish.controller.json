@@ -1,0 +1,29 @@
+{
+  "format_version": "1.10.0",
+  "animations": {
+    "idle": "animation.frozen_jellyfish.idle",
+    "swim": "animation.frozen_jellyfish.swim"
+  },
+  "states": [
+    {
+      "name": "default",
+      "animations": ["idle"],
+      "transitions": [
+        {
+          "if": "query.is_moving",
+          "play": "swimming"
+        }
+      ]
+    },
+    {
+      "name": "swimming",
+      "animations": ["swim"],
+      "transitions": [
+        {
+          "if": "!query.is_moving",
+          "play": "default"
+        }
+      ]
+    }
+  ]
+}

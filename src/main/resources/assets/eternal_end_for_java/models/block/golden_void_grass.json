@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "eternal_end_for_java:block/grass/golden_void_grass_1"
+  }
+}

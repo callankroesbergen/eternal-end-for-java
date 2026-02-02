@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "eternal_end_for_java:block/biome/verdant/coarse_endral_top",
+    "side": "eternal_end_for_java:block/biome/verdant/coarse_endral_side"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_fence_gate_wall_open",
+  "textures": {
+    "texture": "eternal_end_for_java:block/wood/scorched/planks_2"
+  }
+}

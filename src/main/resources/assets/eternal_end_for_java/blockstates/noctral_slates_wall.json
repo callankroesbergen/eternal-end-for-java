@@ -1,0 +1,71 @@
+{
+  "variants": {
+    "": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_post"
+    },
+    "up=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_post"
+    },
+    "north=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_side",
+      "uvlock": true
+    },
+    "east=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_side",
+      "y": 90,
+      "uvlock": true
+    },
+    "south=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_side",
+      "y": 180,
+      "uvlock": true
+    },
+    "west=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_side",
+      "y": 270,
+      "uvlock": true
+    },
+    "north=true,east=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_side_tall",
+      "uvlock": true
+    },
+    "north=true,west=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_side_tall",
+      "y": 270,
+      "uvlock": true
+    },
+    "south=true,east=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_side_tall",
+      "y": 90,
+      "uvlock": true
+    },
+    "south=true,west=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_side_tall",
+      "y": 180,
+      "uvlock": true
+    },
+    "north=true,east=true,west=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_side_tall",
+      "y": 270,
+      "uvlock": true
+    },
+    "north=true,south=true,east=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_side_tall",
+      "uvlock": true
+    },
+    "north=true,south=true,west=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_side_tall",
+      "y": 180,
+      "uvlock": true
+    },
+    "south=true,east=true,west=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_side_tall",
+      "y": 90,
+      "uvlock": true
+    },
+    "north=true,east=true,south=true,west=true": {
+      "model": "eternal_end_for_java:block/noctral_slates_wall_side_tall",
+      "uvlock": true
+    }
+  }
+}

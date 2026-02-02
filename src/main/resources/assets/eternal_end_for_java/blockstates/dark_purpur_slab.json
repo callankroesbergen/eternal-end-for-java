@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eternal_end_for_java:block/dark_purpur_slab"
+    },
+    "type=top": {
+      "model": "eternal_end_for_java:block/dark_purpur_slab_top"
+    },
+    "type=double": {
+      "model": "eternal_end_for_java:block/dark_purpur_block"
+    }
+  }
+}

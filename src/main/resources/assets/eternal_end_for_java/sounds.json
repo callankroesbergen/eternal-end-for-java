@@ -1,0 +1,480 @@
+{
+  "entity.shadow.ambient.base": {
+    "sounds": [
+      {
+        "name": "eternal_end_for_java:sounds/end/ambient/shadow/base",
+        "volume": 0.35
+      }
+    ]
+  },
+  "entity.shadow.ambient.random": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/ambient/shadow/random_0", "volume": 0.7 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/shadow/random_1", "volume": 0.7 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/shadow/random_2", "volume": 0.7 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/shadow/random_3", "volume": 0.7 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/shadow/random_4", "volume": 0.7 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/shadow/random_5", "volume": 0.7 }
+    ]
+  },
+  "entity.normal.ambient.base": {
+    "sounds": [
+      {
+        "name": "eternal_end_for_java:sounds/end/ambient/normal/base",
+        "volume": 0.35
+      }
+    ]
+  },
+  "entity.normal.ambient.random": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/ambient/normal/random_0", "volume": 0.7 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/normal/random_1", "volume": 0.7 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/normal/random_3", "volume": 0.7 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/normal/random_4", "volume": 0.7 }
+    ]
+  },
+  "entity.gilded.ambient.base": {
+    "sounds": [
+      {
+        "name": "eternal_end_for_java:sounds/end/ambient/gilded/base",
+        "volume": 0.17
+      }
+    ]
+  },
+  "entity.gilded.ambient.random": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/ambient/gilded/random_0", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/gilded/random_1", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/gilded/random_2", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/gilded/random_3", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/gilded/random_4", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/gilded/random_5", "volume": 0.4 }
+    ]
+  },
+  "entity.prism.ambient.base": {
+    "sounds": [
+      {
+        "name": "eternal_end_for_java:sounds/end/ambient/prism/base",
+        "volume": 0.17
+      }
+    ]
+  },
+  "entity.prism.ambient.random": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/ambient/prism/random_0", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/prism/random_1", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/prism/random_2", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/prism/random_3", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/prism/random_4", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/prism/random_5", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/prism/random_6", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/prism/random_7", "volume": 0.4 }
+    ]
+  },
+  "entity.sporelight.ambient.base": {
+    "sounds": [
+      {
+        "name": "eternal_end_for_java:sounds/end/ambient/sporelight/base",
+        "volume": 0.17
+      }
+    ]
+  },
+  "entity.sporelight.ambient.random": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/ambient/sporelight/random_0", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/sporelight/random_1", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/sporelight/random_2", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/sporelight/random_3", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/sporelight/random_4", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/sporelight/random_5", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/sporelight/random_6", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/sporelight/random_7", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/sporelight/random_8", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/sporelight/random_9", "volume": 0.4 }
+    ]
+  },
+  "entity.verdant.ambient.base": {
+    "sounds": [
+      {
+        "name": "eternal_end_for_java:sounds/end/ambient/verdant/base",
+        "volume": 0.15
+      }
+    ]
+  },
+  "entity.verdant.ambient.random": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/ambient/verdant/random_0", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/verdant/random_1", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/verdant/random_2", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/verdant/random_3", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/verdant/random_4", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/verdant/random_5", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/verdant/random_6", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/ambient/verdant/random_7", "volume": 0.4 }
+    ]
+  },
+  "entity.enderman.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/enderman/ambient_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/enderman/ambient_1", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/enderman/ambient_2", "volume": 0.5 }
+    ]
+  },
+  "entity.enderman.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/enderman/hurt_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/enderman/hurt_1", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/enderman/hurt_2", "volume": 0.5 }
+    ]
+  },
+  "entity.enderman.death": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/enderman/death_0", "volume": 0.5 }
+    ]
+  },
+  "entity.enderman.attack": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/enderman/attack_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/enderman/attack_1", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/enderman/attack_2", "volume": 0.5 }
+    ]
+  },
+  "entity.enderman.aggressive": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/enderman/aggressive_0", "volume": 0.3 }
+    ]
+  },
+  "entity.enderman_statue.activate": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/enderman/ambient_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/enderman/ambient_1", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/enderman/ambient_2", "volume": 0.5 }
+    ]
+  },
+  "entity.winged_enderman.attack": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/enderman/winged_attack_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/enderman/winged_attack_1", "volume": 0.5 }
+    ]
+  },
+  "entity.gilded_deer.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/deer/ambient_0", "volume": 0.3 },
+      { "name": "eternal_end_for_java:sounds/end/deer/ambient_1", "volume": 0.3 }
+    ]
+  },
+  "entity.gilded_deer.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/deer/hurt_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/deer/hurt_1", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/deer/hurt_2", "volume": 0.5 }
+    ]
+  },
+  "entity.gilded_deer.death": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/deer/death_0", "volume": 0.5 }
+    ]
+  },
+  "entity.shadow_deer.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/shadow_deer/ambient_0", "volume": 0.25 },
+      { "name": "eternal_end_for_java:sounds/end/shadow_deer/ambient_1", "volume": 0.25 },
+      { "name": "eternal_end_for_java:sounds/end/shadow_deer/ambient_2", "volume": 0.25 }
+    ]
+  },
+  "entity.shadow_deer.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/shadow_deer/hurt_0", "volume": 0.25 },
+      { "name": "eternal_end_for_java:sounds/end/shadow_deer/hurt_1", "volume": 0.25 }
+    ]
+  },
+  "entity.shadow_deer.death": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/shadow_deer/hurt_2", "volume": 0.25 }
+    ]
+  },
+  "entity.shadow_deer.attack": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/shadow_deer/attack_0", "volume": 0.25 },
+      { "name": "eternal_end_for_java:sounds/end/shadow_deer/attack_1", "volume": 0.25 },
+      { "name": "eternal_end_for_java:sounds/end/shadow_deer/attack_2", "volume": 0.25 }
+    ]
+  },
+  "entity.doomed_wolf.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/doomed_wolf/ambient_0", "volume": 0.2 },
+      { "name": "eternal_end_for_java:sounds/end/doomed_wolf/ambient_1", "volume": 0.2 },
+      { "name": "eternal_end_for_java:sounds/end/doomed_wolf/ambient_2", "volume": 0.2 }
+    ]
+  },
+  "entity.doomed_wolf.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/doomed_wolf/hurt_0", "volume": 0.25 },
+      { "name": "eternal_end_for_java:sounds/end/doomed_wolf/hurt_1", "volume": 0.25 }
+    ]
+  },
+  "entity.doomed_wolf.death": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/doomed_wolf/hurt_1", "volume": 0.25 }
+    ]
+  },
+  "entity.doomed_wolf.attack": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/doomed_wolf/attack_0", "volume": 0.25 },
+      { "name": "eternal_end_for_java:sounds/end/doomed_wolf/attack_1", "volume": 0.25 },
+      { "name": "eternal_end_for_java:sounds/end/doomed_wolf/attack_2", "volume": 0.25 }
+    ]
+  },
+  "entity.frozen_jellyfish.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/frozen_jellyfish/ambient_0", "volume": 0.5 }
+    ]
+  },
+  "entity.frozen_jellyfish.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/frozen_jellyfish/hurt_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/frozen_jellyfish/hurt_1", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/frozen_jellyfish/hurt_2", "volume": 0.5 }
+    ]
+  },
+  "entity.frozen_jellyfish.death": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/frozen_jellyfish/death_0", "volume": 0.5 }
+    ]
+  },
+  "entity.frozen_jellyfish.attack": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/frozen_jellyfish/attack_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/frozen_jellyfish/attack_1", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/frozen_jellyfish/attack_2", "volume": 0.5 }
+    ]
+  },
+  "entity.spore_lizard.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/lizard/ambient_0", "volume": 0.3 },
+      { "name": "eternal_end_for_java:sounds/end/lizard/ambient_1", "volume": 0.3 }
+    ]
+  },
+  "entity.spore_lizard.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/lizard/hurt_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/lizard/hurt_1", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/lizard/hurt_2", "volume": 0.5 }
+    ]
+  },
+  "entity.spore_lizard.death": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/lizard/death_0", "volume": 0.5 }
+    ]
+  },
+  "entity.spore_lizard.attack": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/lizard/attack_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/lizard/attack_1", "volume": 0.5 }
+    ]
+  },
+  "entity.gilded_golem.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/golem/ambient_0", "volume": 0.15 }
+    ]
+  },
+  "entity.gilded_golem.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/golem/hurt_0", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/golem/hurt_1", "volume": 0.4 }
+    ]
+  },
+  "entity.gilded_golem.death": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/golem/death_0", "volume": 0.4 }
+    ]
+  },
+  "entity.gilded_golem.attack": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/golem/attack_0", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/golem/attack_1", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/golem/attack_2", "volume": 0.4 }
+    ]
+  },
+  "entity.gilded_golem.step": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/golem/step_0", "volume": 0.5 }
+    ]
+  },
+  "entity.gilded_turtle.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/turtle/ambient_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/turtle/ambient_1", "volume": 0.5 }
+    ]
+  },
+  "entity.gilded_turtle.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/turtle/hurt_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/turtle/hurt_1", "volume": 0.5 }
+    ]
+  },
+  "entity.gilded_turtle.death": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/turtle/death_0", "volume": 0.5 }
+    ]
+  },
+  "entity.gilded_turtle.roll_up": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/turtle/roll_up_0", "volume": 0.5 }
+    ]
+  },
+  "entity.gilded_turtle.step": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/turtle/step_0", "volume": 0.2 }
+    ]
+  },
+  "entity.endray.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/endray/ambient_0", "volume": 0.25 },
+      { "name": "eternal_end_for_java:sounds/end/endray/ambient_1", "volume": 0.25 },
+      { "name": "eternal_end_for_java:sounds/end/endray/ambient_2", "volume": 0.25 },
+      { "name": "eternal_end_for_java:sounds/end/endray/ambient_3", "volume": 0.25 }
+    ]
+  },
+  "entity.endray.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/endray/hurt_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/endray/hurt_1", "volume": 0.5 }
+    ]
+  },
+  "entity.endray.death": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/endray/death_0", "volume": 0.5 }
+    ]
+  },
+  "entity.endray.flap": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/endray/flap", "volume": 0.3 }
+    ]
+  },
+  "entity.void_eye.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/void_eye/ambient", "volume": 0.25 }
+    ]
+  },
+  "entity.void_eye.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/void_eye/hurt_0", "volume": 0.25 },
+      { "name": "eternal_end_for_java:sounds/end/void_eye/hurt_1", "volume": 0.25 }
+    ]
+  },
+  "entity.void_eye.death": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/void_eye/hurt_2", "volume": 0.25 }
+    ]
+  },
+  "entity.lost_soul.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/lost_soul/fly", "volume": 0.5 }
+    ]
+  },
+  "entity.lost_soul.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/lost_soul/hurt", "volume": 1 }
+    ]
+  },
+  "entity.sprenging.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/sprenging/ambient_0", "volume": 0.6 },
+      { "name": "eternal_end_for_java:sounds/end/sprenging/ambient_1", "volume": 0.6 }
+    ]
+  },
+  "entity.sveppum.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/sveppum/hurt_0", "volume": 0.6 },
+      { "name": "eternal_end_for_java:sounds/end/sveppum/hurt_1", "volume": 0.6 },
+      { "name": "eternal_end_for_java:sounds/end/sveppum/hurt_2", "volume": 0.6 }
+    ]
+  },
+  "entity.villager.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/villager/ambient_0", "volume": 0.2 },
+      { "name": "eternal_end_for_java:sounds/end/villager/ambient_1", "volume": 0.2 },
+      { "name": "eternal_end_for_java:sounds/end/villager/ambient_2", "volume": 0.2 }
+    ]
+  },
+  "entity.villager.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/villager/hurt_0", "volume": 0.25 },
+      { "name": "eternal_end_for_java:sounds/end/villager/hurt_1", "volume": 0.25 }
+    ]
+  },
+  "entity.villager.death": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/villager/hurt_1", "volume": 0.25 }
+    ]
+  },
+  "entity.companion.ambient": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/companion/ambient_0", "volume": 0.3 },
+      { "name": "eternal_end_for_java:sounds/end/companion/ambient_1", "volume": 0.3 },
+      { "name": "eternal_end_for_java:sounds/end/companion/ambient_2", "volume": 0.3 }
+    ]
+  },
+  "entity.companion.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/companion/hurt_0", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/companion/hurt_1", "volume": 0.5 },
+      { "name": "eternal_end_for_java:sounds/end/companion/hurt_2", "volume": 0.5 }
+    ]
+  },
+  "entity.companion.death": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/companion/death_0", "volume": 0.5 }
+    ]
+  },
+  "entity.companion.happy": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/companion/happy_0", "volume": 0.5 }
+    ]
+  },
+  "entity.companion.snore": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/companion/snore", "volume": 0.15 }
+    ]
+  },
+  "entity.void_dragon.spawn": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/dragon/spawn", "volume": 0.75 }
+    ]
+  },
+  "entity.void_dragon.death": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/dragon/death", "volume": 0.75 }
+    ]
+  },
+  "entity.void_dragon.hurt": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/dragon/hurt_0", "volume": 0.45 },
+      { "name": "eternal_end_for_java:sounds/end/dragon/hurt_1", "volume": 0.45 },
+      { "name": "eternal_end_for_java:sounds/end/dragon/hurt_2", "volume": 0.45 },
+      { "name": "eternal_end_for_java:sounds/end/dragon/hurt_3", "volume": 0.45 }
+    ]
+  },
+  "entity.void_dragon.attack": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/dragon/attack_0", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/dragon/attack_1", "volume": 0.4 }
+    ]
+  },
+  "entity.void_dragon.flap": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/dragon/fly_0", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/dragon/fly_1", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/dragon/fly_2", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/dragon/fly_3", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/dragon/fly_4", "volume": 0.4 },
+      { "name": "eternal_end_for_java:sounds/end/dragon/fly_5", "volume": 0.4 }
+    ]
+  },
+  "entity.geysir": {
+    "sounds": [
+      { "name": "eternal_end_for_java:sounds/end/geysir", "volume": 0.5 }
+    ]
+  }
+}

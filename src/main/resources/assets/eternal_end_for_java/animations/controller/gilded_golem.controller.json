@@ -1,0 +1,52 @@
+{
+  "format_version": "1.10.0",
+  "animations": {
+    "idle": "animation.gilded_golem.idle",
+    "walk": "animation.gilded_golem.walk",
+    "attack": "animation.gilded_golem.attack"
+  },
+  "states": [
+    {
+      "name": "default",
+      "animations": ["idle"],
+      "transitions": [
+        {
+          "if": "query.is_moving",
+          "play": "walking"
+        },
+        {
+          "if": "query.is_attacking",
+          "play": "attacking"
+        }
+      ]
+    },
+    {
+      "name": "walking",
+      "animations": ["walk"],
+      "transitions": [
+        {
+          "if": "!query.is_moving && !query.is_attacking",
+          "play": "default"
+        },
+        {
+          "if": "query.is_attacking",
+          "play": "attacking"
+        }
+      ]
+    },
+    {
+      "name": "attacking",
+      "animations": ["attack"],
+      "transitions": [
+        {
+          "if": "query.anim_time > 1.4 && !query.is_attacking && !query.is_moving",
+          "play": "default"
+        },
+        {
+          "if": "query.anim_time > 1.4 && !query.is_attacking && query.is_moving",
+          "play": "walking"
+        }
+      ]
+    }
+  ]
+}

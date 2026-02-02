@@ -1,0 +1,47 @@
+{
+  "format_version": "1.10.0",
+  "animations": {
+    "idle": "animation.gilded_enderman.idle",
+    "walk": "animation.gilded_enderman.walk",
+    "attack": "animation.gilded_enderman.attack",
+    "hurt": "animation.gilded_enderman.hurt"
+  },
+  "states": [
+    {
+      "name": "default",
+      "animations": ["idle"],
+      "transitions": [
+        {"if": "query.is_moving", "play": "walking"},
+        {"if": "query.is_attacking", "play": "attacking"},
+        {"if": "query.is_hurt", "play": "hurt_state"}
+      ]
+    },
+    {
+      "name": "walking",
+      "animations": ["walk"],
+      "transitions": [
+        {"if": "!query.is_moving && !query.is_attacking && !query.is_hurt", "play": "default"},
+        {"if": "query.is_attacking", "play": "attacking"},
+        {"if": "query.is_hurt", "play": "hurt_state"}
+      ]
+    },
+    {
+      "name": "attacking",
+      "animations": ["attack"],
+      "transitions": [
+        {"if": "query.anim_time > 1.4 && !query.is_attacking && !query.is_moving && !query.is_hurt", "play": "default"},
+        {"if": "query.anim_time > 1.4 && !query.is_attacking && query.is_moving && !query.is_hurt", "play": "walking"},
+        {"if": "query.is_hurt", "play": "hurt_state"}
+      ]
+    },
+    {
+      "name": "hurt_state",
+      "animations": ["hurt"],
+      "transitions": [
+        {"if": "query.anim_time > 0.39 && !query.is_hurt && !query.is_attacking && !query.is_moving", "play": "default"},
+        {"if": "query.anim_time > 0.39 && !query.is_hurt && query.is_moving && !query.is_attacking", "play": "walking"},
+        {"if": "query.is_attacking", "play": "attacking"}
+      ]
+    }
+  ]
+}

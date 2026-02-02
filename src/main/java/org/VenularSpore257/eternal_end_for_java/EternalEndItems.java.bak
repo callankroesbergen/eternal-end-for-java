@@ -1,0 +1,320 @@
+package org.VenularSpore257.eternal_end_for_java;
+
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.*;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import static org.VenularSpore257.eternal_end_for_java.item.AmetrineTiers.AMETRINE;
+import static org.VenularSpore257.eternal_end_for_java.item.AmetrineTiers.ENDERITE;
+
+/**
+ * Registry for all Eternal End items.
+ * 185 items total from the Bedrock addon.
+ */
+public class EternalEndItems {
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Eternal_end_for_java.MODID);
+
+    // ========== MATERIALS ==========
+
+    // Ametrine
+    public static final DeferredItem<Item> AMETRINE_INGOT = ITEMS.registerSimpleItem("ametrine_ingot");
+    public static final DeferredItem<Item> AMETRINE_CRYSTAL = ITEMS.registerSimpleItem("ametrine_crystal");
+
+    // Enderite
+    public static final DeferredItem<Item> ENDERITE_INGOT = ITEMS.registerSimpleItem("enderite_ingot");
+    public static final DeferredItem<Item> ENDERITE_SCRAP = ITEMS.registerSimpleItem("enderite_scrap");
+
+    // Enderite Upgrade Smithing Template
+    public static final DeferredItem<Item> ENDERITE_UPGRADE = ITEMS.registerSimpleItem("enderite_upgrade");
+
+    // Purpurite
+    public static final DeferredItem<Item> RAW_PURPURITE = ITEMS.registerSimpleItem("raw_purpurite");
+    public static final DeferredItem<Item> RAW_DARK_PURPURITE = ITEMS.registerSimpleItem("raw_dark_purpurite");
+    public static final DeferredItem<Item> PURPUR_BRICK = ITEMS.registerSimpleItem("purpur_brick");
+    public static final DeferredItem<Item> DARK_PURPUR_BRICK = ITEMS.registerSimpleItem("dark_purpur_brick");
+
+    // Viridian
+    public static final DeferredItem<Item> VIRIDIAN_CLUMP = ITEMS.registerSimpleItem("viridian_clump");
+    public static final DeferredItem<Item> VIRIDIAN_BRICK = ITEMS.registerSimpleItem("viridian_brick");
+
+    // Enderman Hearts
+    public static final DeferredItem<Item> ENDERMAN_HEART = ITEMS.registerSimpleItem("enderman_heart");
+    public static final DeferredItem<Item> WINGED_ENDERMAN_HEART = ITEMS.registerSimpleItem("winged_enderman_heart");
+    public static final DeferredItem<Item> PALE_ENDERMAN_HEART = ITEMS.registerSimpleItem("pale_enderman_heart");
+    public static final DeferredItem<Item> MOSSY_ENDERMAN_HEART = ITEMS.registerSimpleItem("mossy_enderman_heart");
+    public static final DeferredItem<Item> GILDED_ENDERMAN_HEART = ITEMS.registerSimpleItem("gilded_enderman_heart");
+    public static final DeferredItem<Item> MYCOTIC_ENDERMAN_HEART = ITEMS.registerSimpleItem("mycotic_enderman_heart");
+
+    // Essences
+    public static final DeferredItem<Item> WHITE_ESSENCE = ITEMS.registerSimpleItem("white_essence");
+    public static final DeferredItem<Item> BLACK_ESSENCE = ITEMS.registerSimpleItem("black_essence");
+    public static final DeferredItem<Item> VERDANT_ESSENCE = ITEMS.registerSimpleItem("verdant_essence");
+
+    // Special Items
+    public static final DeferredItem<Item> GOLEM_CORE = ITEMS.registerSimpleItem("golem_core");
+    public static final DeferredItem<Item> GLOW_PEARL = ITEMS.registerSimpleItem("glow_pearl");
+    public static final DeferredItem<Item> PALE_PEARL = ITEMS.registerSimpleItem("pale_pearl");
+    public static final DeferredItem<Item> ENDER_SLIME = ITEMS.registerSimpleItem("ender_slime");
+
+    // ========== FOOD ==========
+
+    // Hearts
+    public static final DeferredItem<Item> ETERNAL_HEART = ITEMS.register("eternal_heart",
+            () -> new Item(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationModifier(1.2f)
+                            .alwaysEdible()
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(
+                                    net.minecraft.world.effect.MobEffects.REGENERATION, 200, 2), 1.0f)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(
+                                    net.minecraft.world.effect.MobEffects.HEALTH_BOOST, 6000, 4), 1.0f)
+                            .build())
+                    .rarity(Rarity.EPIC)));
+
+    // Stews
+    public static final DeferredItem<Item> AWKWARD_MUSHROOM_STEW = ITEMS.register("awkward_mushroom_stew",
+            () -> new Item(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(6)
+                            .saturationModifier(0.6f)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(
+                                    net.minecraft.world.effect.MobEffects.REGENERATION, 600, 0), 1.0f)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(
+                                    net.minecraft.world.effect.MobEffects.CONFUSION, 600, 0), 1.0f)
+                            .build())
+                    .stacksTo(1)));
+
+    // Meat
+    public static final DeferredItem<Item> GILDED_VENISON = ITEMS.register("gilded_venison",
+            () -> new Item(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(3)
+                            .saturationModifier(0.3f)
+                            .build())));
+
+    public static final DeferredItem<Item> COOKED_GILDED_VENISON = ITEMS.register("cooked_gilded_venison",
+            () -> new Item(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(8)
+                            .saturationModifier(0.8f)
+                            .build())));
+
+    // Berries & Fruits
+    public static final DeferredItem<Item> MOON_BERRY = ITEMS.register("moon_berry",
+            () -> new Item(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(2)
+                            .saturationModifier(0.4f)
+                            .build())));
+
+    // Seeds
+    public static final DeferredItem<Item> GILDED_WHEAT_SEEDS = ITEMS.registerSimpleItem("gilded_wheat_seeds");
+    public static final DeferredItem<Item> FROSTBLOOM_SEEDS = ITEMS.registerSimpleItem("frostbloom_seeds");
+    public static final DeferredItem<Item> MISTVEIL_BLOOM_SEEDS = ITEMS.registerSimpleItem("mistveil_bloom_seeds");
+    public static final DeferredItem<Item> GLEAMFLOAT_SEEDS = ITEMS.registerSimpleItem("gleamfloat_seeds");
+
+    // Other Food
+    public static final DeferredItem<Item> FROSTBLOOM_JELLY = ITEMS.register("frostbloom_jelly",
+            () -> new Item(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationModifier(0.4f)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(
+                                    net.minecraft.world.effect.MobEffects.MOVEMENT_SPEED, 300, 1), 1.0f)
+                            .build())));
+
+    // Essence Drinks
+    public static final DeferredItem<Item> WHITE_ESSENCE_DRINK = ITEMS.register("white_essence_drink",
+            () -> new Item(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(6)
+                            .saturationModifier(0.6f)
+                            .alwaysEdible()
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(
+                                    net.minecraft.world.effect.MobEffects.ABSORPTION, 300, 1), 1.0f)
+                            .build())));
+
+    public static final DeferredItem<Item> BLACK_ESSENCE_DRINK = ITEMS.register("black_essence_drink",
+            () -> new Item(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(6)
+                            .saturationModifier(0.6f)
+                            .alwaysEdible()
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(
+                                    net.minecraft.world.effect.MobEffects.DAMAGE_BOOST, 300, 1), 1.0f)
+                            .build())));
+
+    public static final DeferredItem<Item> VERDANT_ESSENCE_DRINK = ITEMS.register("verdant_essence_drink",
+            () -> new Item(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(6)
+                            .saturationModifier(0.6f)
+                            .alwaysEdible()
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(
+                                    net.minecraft.world.effect.MobEffects.LEVITATION, 400, 0), 1.0f)
+                            .build())));
+
+    // Vegetation/Farming Items
+    public static final DeferredItem<Item> FLARE_FERN_LEAF = ITEMS.registerSimpleItem("flare_fern_leaf");
+    public static final DeferredItem<Item> ICELUMIA = ITEMS.registerSimpleItem("icelumia");
+    public static final DeferredItem<Item> LAYERLOOM = ITEMS.registerSimpleItem("layerloom");
+    public static final DeferredItem<Item> LOTUS_BLOOM = ITEMS.registerSimpleItem("lotus_bloom");
+    public static final DeferredItem<Item> MOONFLOWER = ITEMS.registerSimpleItem("moonflower");
+    public static final DeferredItem<Item> SPRESPROUT = ITEMS.registerSimpleItem("sporesprout");
+    public static final DeferredItem<Item> TANGLECAPS = ITEMS.registerSimpleItem("tanglecaps");
+
+    // ========== AMETRINE TOOLS ==========
+    public static final DeferredItem<Item> AMETRINE_SWORD = ITEMS.register("ametrine_sword",
+            () -> new SwordItem(AMETRINE, new Item.Properties()));
+
+    public static final DeferredItem<Item> AMETRINE_PICKAXE = ITEMS.register("ametrine_pickaxe",
+            () -> new PickaxeItem(AMETRINE, new Item.Properties()));
+
+    public static final DeferredItem<Item> AMETRINE_AXE = ITEMS.register("ametrine_axe",
+            () -> new AxeItem(AMETRINE, new Item.Properties()));
+
+    public static final DeferredItem<Item> AMETRINE_SHOVEL = ITEMS.register("ametrine_shovel",
+            () -> new ShovelItem(AMETRINE, new Item.Properties()));
+
+    public static final DeferredItem<Item> AMETRINE_HOE = ITEMS.register("ametrine_hoe",
+            () -> new HoeItem(AMETRINE, new Item.Properties()));
+
+    // ========== ENDERITE TOOLS ==========
+    public static final DeferredItem<Item> ENDERITE_SWORD = ITEMS.register("enderite_sword",
+            () -> new SwordItem(ENDERITE, new Item.Properties()));
+
+    public static final DeferredItem<Item> ENDERITE_PICKAXE = ITEMS.register("enderite_pickaxe",
+            () -> new PickaxeItem(ENDERITE, new Item.Properties()));
+
+    public static final DeferredItem<Item> ENDERITE_AXE = ITEMS.register("enderite_axe",
+            () -> new AxeItem(ENDERITE, new Item.Properties()));
+
+    public static final DeferredItem<Item> ENDERITE_SHOVEL = ITEMS.register("enderite_shovel",
+            () -> new ShovelItem(ENDERITE, new Item.Properties()));
+
+    public static final DeferredItem<Item> ENDERITE_HOE = ITEMS.register("enderite_hoe",
+            () -> new HoeItem(ENDERITE, new Item.Properties()));
+
+    // ========== AMETRINE ARMOR ==========
+    public static final DeferredItem<Item> AMETRINE_HELMET = ITEMS.register("ametrine_helmet",
+            () -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final DeferredItem<Item> AMETRINE_CHESTPLATE = ITEMS.register("ametrine_chestplate",
+            () -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
+    public static final DeferredItem<Item> AMETRINE_LEGGINGS = ITEMS.register("ametrine_leggings",
+            () -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
+    public static final DeferredItem<Item> AMETRINE_BOOTS = ITEMS.register("ametrine_boots",
+            () -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.BOOTS, new Item.Properties()));
+
+    // ========== ENDERITE ARMOR ==========
+    public static final DeferredItem<Item> ENDERITE_HELMET = ITEMS.register("enderite_helmet",
+            () -> new ArmorItem(ArmorMaterials.NETHERITE, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final DeferredItem<Item> ENDERITE_CHESTPLATE = ITEMS.register("enderite_chestplate",
+            () -> new ArmorItem(ArmorMaterials.NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
+    public static final DeferredItem<Item> ENDERITE_LEGGINGS = ITEMS.register("enderite_leggings",
+            () -> new ArmorItem(ArmorMaterials.NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
+    public static final DeferredItem<Item> ENDERITE_BOOTS = ITEMS.register("enderite_boots",
+            () -> new ArmorItem(ArmorMaterials.NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties()));
+
+    // ========== SHULKER ARMOR (using Netherite tier for now) ==========
+    public static final DeferredItem<Item> SHULKER_HELMET = ITEMS.register("shulker_helmet",
+            () -> new ArmorItem(ArmorMaterials.NETHERITE, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final DeferredItem<Item> SHULKER_CHESTPLATE = ITEMS.register("shulker_chestplate",
+            () -> new ArmorItem(ArmorMaterials.NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
+    public static final DeferredItem<Item> SHULKER_LEGGINGS = ITEMS.register("shulker_leggings",
+            () -> new ArmorItem(ArmorMaterials.NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
+    public static final DeferredItem<Item> SHULKER_BOOTS = ITEMS.register("shulker_boots",
+            () -> new ArmorItem(ArmorMaterials.NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties()));
+
+    // ========== SPECIAL ARMOR ==========
+    public static final DeferredItem<Item> CLOUD_BOOTS = ITEMS.register("cloud_boots",
+            () -> new ArmorItem(ArmorMaterials.LEATHER, ArmorItem.Type.BOOTS, new Item.Properties()));
+
+    // ========== SPECIAL ITEMS ==========
+    public static final DeferredItem<Item> VOID_TOTEM = ITEMS.register("void_totem",
+            () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+
+    public static final DeferredItem<Item> VOID_DRAGON_EGG = ITEMS.registerSimpleItem("void_dragon_egg");
+    public static final DeferredItem<Item> VOID_DRAGON_HEAD = ITEMS.registerSimpleItem("void_dragon_head");
+
+    // Bottled Lost Souls
+    public static final DeferredItem<Item> BOTTLED_NORMAL_LOST_SOUL = ITEMS.registerSimpleItem("bottled_normal_lost_soul");
+    public static final DeferredItem<Item> BOTTLED_GILDED_LOST_SOUL = ITEMS.registerSimpleItem("bottled_gilded_lost_soul");
+    public static final DeferredItem<Item> BOTTLED_PRISM_LOST_SOUL = ITEMS.registerSimpleItem("bottled_prism_lost_soul");
+    public static final DeferredItem<Item> BOTTLED_SHADOW_LOST_SOUL = ITEMS.registerSimpleItem("bottled_shadow_lost_soul");
+    public static final DeferredItem<Item> BOTTLED_SPORELIGHT_LOST_SOUL = ITEMS.registerSimpleItem("bottled_sporelight_lost_soul");
+    public static final DeferredItem<Item> BOTTLED_VERDANT_LOST_SOUL = ITEMS.registerSimpleItem("bottled_verdant_lost_soul");
+
+    // Info Book
+    public static final DeferredItem<Item> BOOK = ITEMS.registerSimpleItem("book");
+    public static final DeferredItem<Item> BOOK_PAGE_0 = ITEMS.registerSimpleItem("book_page_0");
+    public static final DeferredItem<Item> BOOK_PAGE_1 = ITEMS.registerSimpleItem("book_page_1");
+    public static final DeferredItem<Item> BOOK_PAGE_2 = ITEMS.registerSimpleItem("book_page_2");
+    public static final DeferredItem<Item> BOOK_PAGE_3 = ITEMS.registerSimpleItem("book_page_3");
+    public static final DeferredItem<Item> BOOK_PAGE_4 = ITEMS.registerSimpleItem("book_page_4");
+    public static final DeferredItem<Item> BOOK_PAGE_5 = ITEMS.registerSimpleItem("book_page_5");
+    public static final DeferredItem<Item> BOOK_PAGE_6 = ITEMS.registerSimpleItem("book_page_6");
+    public static final DeferredItem<Item> BOOK_PAGE_7 = ITEMS.registerSimpleItem("book_page_7");
+    public static final DeferredItem<Item> BOOK_PAGE_8 = ITEMS.registerSimpleItem("book_page_8");
+    public static final DeferredItem<Item> BOOK_PAGE_9 = ITEMS.registerSimpleItem("book_page_9");
+
+    // Settings
+    public static final DeferredItem<Item> SETTINGS = ITEMS.registerSimpleItem("settings");
+
+    // ========== SPAWN EGGS ==========
+    public static final DeferredItem<Item> FROSTLING_SPAWN_EGG = registerSpawnEgg("frostling_spawn_egg", FROSTLING, 0x88FFFF, 0xCCCCCC);
+    public static final DeferredItem<Item> DOOMED_WOLF_SPAWN_EGG = registerSpawnEgg("doomed_wolf_spawn_egg", DOOMED_WOLF, 0x333333, 0x888888);
+    public static final DeferredItem<Item> WINGED_ENDERMAN_SPAWN_EGG = registerSpawnEgg("winged_enderman_spawn_egg", WINGED_ENDERMAN, 0x888888, 0xCCCCCC);
+    public static final DeferredItem<Item> MISTLING_SPAWN_EGG = registerSpawnEgg("mistling_spawn_egg", MISTLING, 0x888888, 0xCCCCCC);
+    public static final DeferredItem<Item> VOIDLING_SPAWN_EGG = registerSpawnEgg("voidling_spawn_egg", VOIDLING, 0x000000, 0x333333);
+    public static final DeferredItem<Item> ENDRAY_SPAWN_EGG = registerSpawnEgg("endray_spawn_egg", ENDRAY, 0xCCCCCC, 0x8888FF);
+    public static final DeferredItem<Item> GLOWLING_SPAWN_EGG = registerSpawnEgg("glowling_spawn_egg", GLOWLING, 0xFFFFAA, 0x88FF88);
+    public static final DeferredItem<Item> NYBLING_SPAWN_EGG = registerSpawnEgg("nybling_spawn_egg", NYBLING, 0xAAAAAA, 0x888888);
+    public static final DeferredItem<Item> GILDED_DEER_SPAWN_EGG = registerSpawnEgg("gilded_deer_spawn_egg", GILDED_DEER, 0xFFDD44, 0x886633);
+    public static final DeferredItem<Item> SHADOW_DEER_SPAWN_EGG = registerSpawnEgg("shadow_deer_spawn_egg", SHADOW_DEER, 0x333333, 0x888888);
+    public static final DeferredItem<Item> GILDED_GOLEM_SPAWN_EGG = registerSpawnEgg("gilded_golem_spawn_egg", GILDED_GOLEM, 0xFFDD44, 0x888888);
+    public static final DeferredItem<Item> GILDED_TURTLE_SPAWN_EGG = registerSpawnEgg("gilded_turtle_spawn_egg", GILDED_TURTLE, 0x44AA44, 0xFFDD44);
+    public static final DeferredItem<Item> LOST_SOUL_SPAWN_EGG = registerSpawnEgg("lost_soul_spawn_egg", LOST_SOUL, 0x888888, 0xCCCCCC);
+    public static final DeferredItem<Item> SVEPPUM_SPAWN_EGG = registerSpawnEgg("sveppum_spawn_egg", SVEPPUM, 0xAAAAAA, 0x888888);
+    public static final DeferredItem<Item> SPRENGING_SPAWN_EGG = registerSpawnEgg("sprenging_spawn_egg", SPRENGING, 0x888888, 0xCCCCCC);
+    public static final DeferredItem<Item> VOID_EYE_SPAWN_EGG = registerSpawnEgg("void_eye_spawn_egg", VOID_EYE, 0x440044, 0x880088);
+    public static final DeferredItem<Item> SPORE_LIZARD_SPAWN_EGG = registerSpawnEgg("spore_lizard_spawn_egg", SPORE_LIZARD, 0x00AA00, 0x88AA88);
+    public static final DeferredItem<Item> VERDANT_LIZARD_SPAWN_EGG = registerSpawnEgg("verdant_lizard_spawn_egg", VERDANT_LIZARD, 0x00AA00, 0x88AA88);
+    public static final DeferredItem<Item> ENDER_SLIME_SPAWN_EGG = registerSpawnEgg("ender_slime_spawn_egg", ENDER_SLIME, 0xAA00AA, 0x440088);
+    public static final DeferredItem<Item> FROZEN_JELLYFISH_SPAWN_EGG = registerSpawnEgg("frozen_jellyfish_spawn_egg", FROZEN_JELLYFISH, 0xAAAAFF, 0x8888FF);
+
+    // Villager Spawn Eggs
+    public static final DeferredItem<Item> ETERNAL_TRADER_SPAWN_EGG = registerSpawnEgg("eternal_trader_spawn_egg", ETERNAL_TRADER, 0x888888, 0xCCCCCC);
+    public static final DeferredItem<Item> NORMAL_VILLAGER_SPAWN_EGG = registerSpawnEgg("normal_villager_spawn_egg", NORMAL_VILLAGER, 0x888888, 0xCCCCCC);
+    public static final DeferredItem<Item> PRISM_VILLAGER_SPAWN_EGG = registerSpawnEgg("prism_villager_spawn_egg", PRISM_VILLAGER, 0xAAAAFF, 0x8888FF);
+    public static final DeferredItem<Item> SPORE_VILLAGER_SPAWN_EGG = registerSpawnEgg("spore_villager_spawn_egg", SPORE_VILLAGER, 0x00AA00, 0x88AA88);
+    public static final DeferredItem<Item> GILDED_VILLAGER_SPAWN_EGG = registerSpawnEgg("gilded_villager_spawn_egg", GILDED_VILLAGER, 0xFFDD44, 0x886633);
+    public static final DeferredItem<Item> SHADOW_VILLAGER_SPAWN_EGG = registerSpawnEgg("shadow_villager_spawn_egg", SHADOW_VILLAGER, 0x333333, 0x888888);
+
+    // ========== HELPER METHODS ==========
+
+    private static DeferredItem<Item> registerSpawnEgg(String name, DeferredHolder<?, ?> entityType, int primaryColor, int secondaryColor) {
+        return ITEMS.register(name, () -> new SpawnEggItem(
+                (EntityType<? extends net.minecraft.world.entity.Mob>) entityType.get(),
+                primaryColor,
+                secondaryColor,
+                new Item.Properties()));
+    }
+
+    public static void register(IEventBus eventBus) {
+        ITEMS.register(eventBus);
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "eternal_end_for_java:block/wood/scorched/planks_2",
+    "side": "eternal_end_for_java:block/wood/scorched/planks_2",
+    "top": "eternal_end_for_java:block/wood/scorched/planks_2"
+  }
+}

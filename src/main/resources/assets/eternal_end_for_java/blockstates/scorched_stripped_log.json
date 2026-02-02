@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "eternal_end_for_java:block/scorched_stripped_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "eternal_end_for_java:block/scorched_stripped_log"
+    },
+    "axis=z": {
+      "model": "eternal_end_for_java:block/scorched_stripped_log_horizontal",
+      "x": 90
+    }
+  }
+}

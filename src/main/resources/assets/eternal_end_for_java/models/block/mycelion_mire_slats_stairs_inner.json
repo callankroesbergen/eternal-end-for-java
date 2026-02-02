@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "eternal_end_for_java:block/biome/spore/mycelion_mire_slats",
+    "side": "eternal_end_for_java:block/biome/spore/mycelion_mire_slats",
+    "top": "eternal_end_for_java:block/biome/spore/mycelion_mire_slats"
+  }
+}

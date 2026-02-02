@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "eternal_end_for_java:block/wood/cryolite/planks_1",
+    "side": "eternal_end_for_java:block/wood/cryolite/planks_1",
+    "top": "eternal_end_for_java:block/wood/cryolite/planks_1"
+  }
+}

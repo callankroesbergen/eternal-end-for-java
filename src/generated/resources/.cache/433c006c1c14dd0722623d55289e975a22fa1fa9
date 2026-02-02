@@ -1,0 +1,11 @@
+// 1.21.1	2026-02-01T15:50:37.405506	Tags for minecraft:block mod id eternal_end_for_java
+22c656d0e99f21d433855e9ae23a5a8a1c4cde8a data/minecraft/tags/block/dirt.json
+815b71b3aeebe9d801781e2bc2cae01ae52ef913 data/minecraft/tags/block/dragon_immune.json
+451810f1d0e51c25b6f06d90d5964845469bd1e0 data/minecraft/tags/block/logs_that_burn.json
+ea40892b19b11337d40e98a742475491577548ff data/minecraft/tags/block/mineable/axe.json
+4d2589fba1346a6955e8d8fb1bca15f49a8a90e1 data/minecraft/tags/block/mineable/hoe.json
+7ca7ac05d4839460bb7f411f07744422861133cf data/minecraft/tags/block/mineable/pickaxe.json
+51b5d0529db6d41e9d14a24981013c0d8c5b3fe9 data/minecraft/tags/block/needs_iron_tool.json
+2d7a9dcbe6d14e56eff12d858466fa2043584530 data/minecraft/tags/block/needs_stone_tool.json
+8dcac8ee6fdbd0c0c831e65c7c8430e5e4042b4e data/minecraft/tags/block/stone_bricks.json
+37afade7b04fd8a792911c3950b65e44b7768f4c data/minecraft/tags/block/wither_immune.json

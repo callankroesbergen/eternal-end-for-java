@@ -1,0 +1,29 @@
+{
+  "format_version": "1.10.0",
+  "animations": {
+    "idle": "animation.gilded_deer.idle",
+    "walk": "animation.gilded_deer.walk"
+  },
+  "states": [
+    {
+      "name": "default",
+      "animations": ["idle"],
+      "transitions": [
+        {
+          "if": "query.is_moving",
+          "play": "walking"
+        }
+      ]
+    },
+    {
+      "name": "walking",
+      "animations": ["walk"],
+      "transitions": [
+        {
+          "if": "!query.is_moving",
+          "play": "default"
+        }
+      ]
+    }
+  ]
+}

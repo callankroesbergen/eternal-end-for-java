@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_post",
+  "textures": {
+    "wall": "eternal_end_for_java:block/biome/spore/mycelion_mire_slats"
+  }
+}
