@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:village",
+  "biomes": "#eternal_end_for_java:has_structure/prism_village",
+  "step": "surface_structures",
+  "terrain_adaptation": "none",
+  "spawn_overrides": {},
+  "projection": "rigid",
+  "adapt_noise": true,
+  "start_pool": "eternal_end_for_java:prism_village",
+  "size": 5,
+  "start_height": {
+    "absolute": 0
+  },
+  "max_depth": 1
+}

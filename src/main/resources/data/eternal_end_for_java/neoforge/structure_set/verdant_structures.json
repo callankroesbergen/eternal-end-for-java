@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 67890,
+    "spacing": 35,
+    "separation": 9
+  },
+  "structures": [
+    {
+      "structure": "eternal_end_for_java:verdant_ruin",
+      "weight": 5
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:stronghold",
+  "biomes": "#eternal_end_for_java:has_structure/normal_hanging_dungeon",
+  "step": "top_layer_modification",
+  "terrain_adaptation": "beard_thin",
+  "spawn_overrides": {},
+  "projection": "rigid",
+  "start_pool": "eternal_end_for_java:normal_hanging_dungeon",
+  "size": 1,
+  "start_height": {
+    "absolute": 64
+  },
+  "max_depth": 1
+}

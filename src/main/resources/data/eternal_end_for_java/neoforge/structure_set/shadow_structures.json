@@ -1,0 +1,18 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 45678,
+    "spacing": 48,
+    "separation": 12
+  },
+  "structures": [
+    {
+      "structure": "eternal_end_for_java:shadow_village",
+      "weight": 3
+    },
+    {
+      "structure": "eternal_end_for_java:shadow_arena",
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:ruined_portal",
+  "biomes": "#eternal_end_for_java:has_structure/normal_ruin",
+  "step": "surface_structures",
+  "terrain_adaptation": "none",
+  "spawn_overrides": {},
+  "projection": "rigid",
+  "start_pool": "eternal_end_for_java:normal_ruin",
+  "size": 1,
+  "start_height": {
+    "absolute": 0
+  },
+  "max_depth": 1
+}

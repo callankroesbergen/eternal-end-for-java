@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:pillager_outpost",
+  "biomes": "#eternal_end_for_java:has_structure/sporelight_spore_island",
+  "step": "surface_structures",
+  "terrain_adaptation": "none",
+  "spawn_overrides": {},
+  "projection": "rigid",
+  "start_pool": "eternal_end_for_java:sporelight_spore_island",
+  "size": 1,
+  "start_height": {
+    "absolute": 0
+  },
+  "max_depth": 1
+}

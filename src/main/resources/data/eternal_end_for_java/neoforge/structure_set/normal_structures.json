@@ -1,0 +1,30 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 12345,
+    "spacing": 32,
+    "separation": 8
+  },
+  "structures": [
+    {
+      "structure": "eternal_end_for_java:normal_village",
+      "weight": 3
+    },
+    {
+      "structure": "eternal_end_for_java:normal_hanging_dungeon",
+      "weight": 2
+    },
+    {
+      "structure": "eternal_end_for_java:normal_mines",
+      "weight": 4
+    },
+    {
+      "structure": "eternal_end_for_java:normal_ruin",
+      "weight": 5
+    },
+    {
+      "structure": "eternal_end_for_java:normal_shipwreck",
+      "weight": 2
+    }
+  ]
+}

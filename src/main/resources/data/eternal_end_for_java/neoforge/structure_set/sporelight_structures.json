@@ -1,0 +1,26 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 56789,
+    "spacing": 28,
+    "separation": 7
+  },
+  "structures": [
+    {
+      "structure": "eternal_end_for_java:sporelight_village",
+      "weight": 2
+    },
+    {
+      "structure": "eternal_end_for_java:sporelight_fungal_island",
+      "weight": 5
+    },
+    {
+      "structure": "eternal_end_for_java:sporelight_spore_island",
+      "weight": 5
+    },
+    {
+      "structure": "eternal_end_for_java:sporelight_ship",
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 34567,
+    "spacing": 36,
+    "separation": 9
+  },
+  "structures": [
+    {
+      "structure": "eternal_end_for_java:prism_village",
+      "weight": 4
+    }
+  ]
+}

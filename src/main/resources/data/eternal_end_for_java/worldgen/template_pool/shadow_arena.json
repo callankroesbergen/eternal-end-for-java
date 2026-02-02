@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:random_pool",
+  "name": "eternal_end_for_java:shadow_arena",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "eternal_end_for_java:shadow_arena_1",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

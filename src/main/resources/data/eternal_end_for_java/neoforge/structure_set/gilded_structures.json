@@ -1,0 +1,18 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 23456,
+    "spacing": 40,
+    "separation": 10
+  },
+  "structures": [
+    {
+      "structure": "eternal_end_for_java:gilded_village",
+      "weight": 5
+    },
+    {
+      "structure": "eternal_end_for_java:gilded_geode",
+      "weight": 3
+    }
+  ]
+}

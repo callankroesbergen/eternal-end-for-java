@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:mine",
+  "biomes": "#eternal_end_for_java:has_structure/normal_mines",
+  "step": "underground_structures",
+  "terrain_adaptation": "none",
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "full",
+      "spawns": [
+        {
+          "type": "minecraft:spider",
+          "weight": 100,
+          "minCount": 4,
+          "maxCount": 8
+        }
+      ]
+    }
+  },
+  "projection": "rigid",
+  "start_pool": "eternal_end_for_java:normal_mines",
+  "size": 1,
+  "start_height": {
+    "absolute": 50
+  },
+  "max_depth": 1
+}

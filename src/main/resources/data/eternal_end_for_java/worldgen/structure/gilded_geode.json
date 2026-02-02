@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:mineshaft",
+  "biomes": "#eternal_end_for_java:has_structure/gilded_geode",
+  "step": "underground_structures",
+  "terrain_adaptation": "none",
+  "spawn_overrides": {},
+  "projection": "rigid",
+  "start_pool": "eternal_end_for_java:gilded_geode",
+  "size": 1,
+  "start_height": {
+    "absolute": 40
+  },
+  "max_depth": 1
+}
